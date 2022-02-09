@@ -54,9 +54,17 @@ class VoskImpl(ITranslatorTask, ITranslatorGuiParam):
     @staticmethod
     def getNeededParams() -> [GuiParam]:
         modelparam = GuiParamDir()
-        modelparam.name = _("KI-Model Ordner")
+        modelparam.displayname = _("KI-Model Ordner")
+        modelparam.name = "modellocation"
         modelparam.defvalue = ""
         modelparam.mouesover = _("Der Ordner in dem sich das KI-Model für eine Sprache befindet."+
                                  "Die Sprache ist abhängig vom KI-Model")
         return [modelparam]
 
+    @staticmethod
+    def getName() -> str:
+        return _("Vosk")
+
+    @staticmethod
+    def getDescription() -> str:
+        return _("Nutzt die Vosk Spracherkennung für die Texterkennung")
