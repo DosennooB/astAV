@@ -12,7 +12,7 @@ class CharToken:
             self.char = char
         elif(lenght == 0):
             self.char = char
-        elif(char[0:2] == "/n"):
+        elif(char[0:2] == "\n"):
             self.char = char[0:2]
         else:
             self.char = char[0]

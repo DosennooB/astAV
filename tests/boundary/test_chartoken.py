@@ -13,8 +13,8 @@ class TestCharToken(unittest.TestCase):
         self.assertEqual(ct.char, "e")
 
     def test_initial_CharToken_02(self):
-        ct = CharToken("/n", 1.0, 1.1)
-        self.assertEqual(ct.char, "/n")
+        ct = CharToken("\n", 1.0, 1.1)
+        self.assertEqual(ct.char, "\n")
 
     def test_initial_CharToken_03(self):
         ct = CharToken("", 1.0, 1.1)

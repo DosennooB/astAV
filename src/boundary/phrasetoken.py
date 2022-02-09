@@ -47,7 +47,7 @@ class PhraseToken:
         phraselist = []
         charlist = []
         for chart in self.chartokenlist:
-            if(chart.char == " " or chart.char == "/n"):
+            if(chart.char == " " or chart.char == "\n"):
                 if(len(charlist) != 0):
                     phraselist.append(PhraseToken(charlist=charlist))
                     charlist = []
@@ -61,17 +61,17 @@ class PhraseToken:
 
     def splitAtPos(self, pos : int):
         firslist = self.chartokenlist[:pos]
-        while(firslist[-1].char == " " or firslist[-1].char == "/n"):
+        while(firslist[-1].char == " " or firslist[-1].char == "\n"):
             firslist.pop()
-        while (firslist[0].char == " " or firslist[0].char == "/n"):
+        while (firslist[0].char == " " or firslist[0].char == "\n"):
             firslist.pop(0)
         firstphrase = PhraseToken(charlist=firslist)
 
         lastlist = self.chartokenlist[pos:]
 
-        while(lastlist[-1].char == " " or lastlist[-1].char == "/n"):
+        while(lastlist[-1].char == " " or lastlist[-1].char == "\n"):
             lastlist.pop()
-        while (lastlist[0].char == " " or lastlist[0].char == "/n"):
+        while (lastlist[0].char == " " or lastlist[0].char == "\n"):
             lastlist.pop(0)
         lastphrase = PhraseToken(charlist=lastlist)
         return [firstphrase, lastphrase]
