@@ -18,5 +18,6 @@ class test:
         print(a.getDuration())
 
 
-
-test().main()
+frst = 2 > 3
+print(frst)
+#test().main()

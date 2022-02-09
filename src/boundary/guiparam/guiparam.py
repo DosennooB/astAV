@@ -5,6 +5,8 @@ class GuiParam:
     defvalue : any = []
     type : any = []
     mouesover : str = ""
+    displayname : str = ""
+
 
 class GuiParamCheckBox(GuiParam):
     def __init__(self):
@@ -19,7 +21,7 @@ class GuiParamFile(GuiParam):
         self.type = ParamType.FILE
 
 class GuiParamSpinner(GuiParam):
-    spinnerlist : [str] = None
+    spinnerlist : {str} = None
     def __init__(self):
         self.type = ParamType.SPINNER
 
