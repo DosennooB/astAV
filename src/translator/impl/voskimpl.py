@@ -9,17 +9,19 @@ from _io import BufferedReader
 from vosk import Model, KaldiRecognizer
 import json
 import gettext
+
 _ = gettext.gettext
 
+
 class VoskImpl(ITranslatorTask, ITranslatorGuiParam):
-    __task : Stask = []
-    __model : Model
-    def __init__(self, task : Stask):
+    __task: Stask = []
+    __model: Model
+
+    def __init__(self, task: Stask):
         self.__task = task
         self.__model = Model(task.translatorparam.get("modellocation"))
 
-
-    def getText(self, audiobuffer : BufferedReader, duration : float) -> PhraseToken:
+    def getText(self, audiobuffer: BufferedReader, duration: float) -> PhraseToken:
         phresetokens = []
         buffer = Buffer(audiobuffer, duration, self.getSamplerate(), self.__task)
         rec = KaldiRecognizer(self.__model, self.getSamplerate())
@@ -30,23 +32,22 @@ class VoskImpl(ITranslatorTask, ITranslatorGuiParam):
             chunk = buffer.getAudioSec()
 
         buffer.close()
-        result = json.loads(rec.Result())
+        resultlist = json.loads(rec.Result())
         rec.FinalResult()
-        for res in result.result:
-            phraseword = self.__wordToPhrase(res.word, res.start, res.end)
+        for res in resultlist["result"]:
+            phraseword = self.__wordToPhrase(res["word"], res["start"], res["end"])
             phresetokens.append(phraseword)
         return PhraseToken(phresetokens)
 
-    def __wordToPhrase(self, word : str, start : float, end : float) -> PhraseToken:
+    def __wordToPhrase(self, word: str, start: float, end: float) -> PhraseToken:
         charlist = []
         lenght = len(word)
         diff = end - start
         for i in range(lenght):
-            charstart = start + diff / (lenght+1) * i
-            charend = start + diff / (lenght+1) * (i + 1)
+            charstart = start + diff / (lenght) * i
+            charend = start + diff / (lenght) * (i + 1)
             charlist.append(CharToken(word[i], charstart, charend))
         return PhraseToken(charlist)
-
 
     def getSamplerate(self) -> int:
         return 16000
@@ -57,7 +58,7 @@ class VoskImpl(ITranslatorTask, ITranslatorGuiParam):
         modelparam.displayname = _("KI-Model Ordner")
         modelparam.name = "modellocation"
         modelparam.defvalue = ""
-        modelparam.mouesover = _("Der Ordner in dem sich das KI-Model für eine Sprache befindet."+
+        modelparam.mouesover = _("Der Ordner in dem sich das KI-Model für eine Sprache befindet. " +
                                  "Die Sprache ist abhängig vom KI-Model")
         return [modelparam]
 
