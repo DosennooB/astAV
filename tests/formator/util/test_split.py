@@ -145,6 +145,125 @@ class TestSplitSplitTextToSubtitel(TestSplit):
         mock_minlenght.assert_any_call(mock_prase2)
         self.assertEqual(mock_minlenght.call_count, 3)
 
+class TestSplitgetbiggestTimeGab(TestSplit):
+    def test_getBiggestTimeGab_00(self):
+        mock_char1 = MagicMock()
+        mock_char1.starttime = 0.0
+        mock_char1.endtime = 1.0
+        mock_char1.char = "a"
+        mock_char2 = MagicMock()
+        mock_char2.starttime = 1.0
+        mock_char2.endtime = 2.0
+        mock_char2.char = "a"
+        mock_char3 = MagicMock()
+        mock_char3.starttime = 3.0
+        mock_char3.endtime = 4.0
+        mock_char3.char = "a"
+        mock_phrase = MagicMock()
+        mock_phrase.starttime = 0.0
+        mock_phrase.endtime = 4.0
+        mock_phrase.chartokenlist = [mock_char1, mock_char2, mock_char3]
+        mock_phrase.splitAtPos = MagicMock(return_value=True)
+        split = Split()
+        split.maxlinelenght = 2
+        bool = getattr(split, "_Split__getBiggestTimeGab")(mock_phrase)
+        self.assertEqual(bool, True)
+        mock_phrase.splitAtPos.assert_called_once_with(2)
+
+    def test_getBiggestTimeGab_01(self):
+        mock_char1 = MagicMock()
+        mock_char1.starttime = 0.0
+        mock_char1.endtime = 1.0
+        mock_char1.char = "a"
+        mock_char2 = MagicMock()
+        mock_char2.starttime = 1.0
+        mock_char2.endtime = 2.0
+        mock_char2.char = " "
+        mock_char3 = MagicMock()
+        mock_char3.starttime = 2.0
+        mock_char3.endtime = 3.0
+        mock_char3.char = "a"
+        mock_char4 = MagicMock()
+        mock_char4.starttime = 3.0
+        mock_char4.endtime = 4.0
+        mock_char4.char = " "
+        mock_char5 = MagicMock()
+        mock_char5.starttime = 4.0
+        mock_char5.endtime = 5.0
+        mock_char5.char = "a"
+        mock_phrase = MagicMock()
+        mock_phrase.starttime = 0.0
+        mock_phrase.endtime = 10.0
+        mock_phrase.chartokenlist = [mock_char1, mock_char2, mock_char3, mock_char4, mock_char5]
+        mock_phrase.splitAtPos = MagicMock(return_value=True)
+        split = Split()
+        bool = getattr(split, "_Split__getBiggestTimeGab")(mock_phrase)
+        self.assertEqual(bool, True)
+        mock_phrase.splitAtPos.assert_called_once_with(3)
+
+    def test_getBiggestTimeGab_02(self):
+        mock_char1 = MagicMock()
+        mock_char1.starttime = 0.0
+        mock_char1.endtime = 1.0
+        mock_char1.char = "a"
+        mock_char2 = MagicMock()
+        mock_char2.starttime = 2.0
+        mock_char2.endtime = 2.0
+        mock_char2.char = " "
+        mock_char3 = MagicMock()
+        mock_char3.starttime = 2.0
+        mock_char3.endtime = 3.0
+        mock_char3.char = "a"
+        mock_char4 = MagicMock()
+        mock_char4.starttime = 4.0
+        mock_char4.endtime = 4.0
+        mock_char4.char = " "
+        mock_char5 = MagicMock()
+        mock_char5.starttime = 4.0
+        mock_char5.endtime = 5.0
+        mock_char5.char = "a"
+        mock_phrase = MagicMock()
+        mock_phrase.starttime = 0.0
+        mock_phrase.endtime = 10.0
+        mock_phrase.chartokenlist = [mock_char1, mock_char2, mock_char3, mock_char4, mock_char5]
+        mock_phrase.splitAtPos = MagicMock(return_value=True)
+        split = Split()
+        bool = getattr(split, "_Split__getBiggestTimeGab")(mock_phrase)
+        self.assertEqual(bool, True)
+        mock_phrase.splitAtPos.assert_called_once_with(3)
+
+    def test_getBiggestTimeGab_03(self):
+        mock_char1 = MagicMock()
+        mock_char1.starttime = 0.0
+        mock_char1.endtime = 1.0
+        mock_char1.char = "a"
+        mock_char2 = MagicMock()
+        mock_char2.starttime = 0.0
+        mock_char2.endtime = 2.0
+        mock_char2.char = " "
+        mock_char3 = MagicMock()
+        mock_char3.starttime = 2.0
+        mock_char3.endtime = 3.0
+        mock_char3.char = "a"
+        mock_char4 = MagicMock()
+        mock_char4.starttime = 3.0
+        mock_char4.endtime = 4.0
+        mock_char4.char = " "
+        mock_char5 = MagicMock()
+        mock_char5.starttime = 4.0
+        mock_char5.endtime = 5.0
+        mock_char5.char = "a"
+        mock_phrase = MagicMock()
+        mock_phrase.starttime = 0.0
+        mock_phrase.endtime = 10.0
+        mock_phrase.chartokenlist = [mock_char1, mock_char2, mock_char3, mock_char4, mock_char5]
+        mock_phrase.splitAtPos = MagicMock(return_value=True)
+        split = Split()
+        bool = getattr(split, "_Split__getBiggestTimeGab")(mock_phrase)
+        self.assertEqual(bool, True)
+        mock_phrase.splitAtPos.assert_called_once_with(1)
+
+
 class TestSplitSegmentHasValidCompletLenght(TestSplit):
     def test_segmentHasValidCompletLenght_00(self):
         mock_phraselong = MagicMock()
