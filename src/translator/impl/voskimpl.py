@@ -22,7 +22,7 @@ class VoskImpl(ITranslatorTask, ITranslatorGuiParam):
         self.__model = Model(task.translatorparam.get("modellocation"))
 
     def getText(self, audiobuffer: BufferedReader, duration: float) -> PhraseToken:
-        phresetokens = []
+        phrasetokens = []
         buffer = Buffer(audiobuffer, duration, self.getSamplerate(), self.__task)
         rec = KaldiRecognizer(self.__model, self.getSamplerate())
         rec.SetWords(True)
@@ -36,8 +36,8 @@ class VoskImpl(ITranslatorTask, ITranslatorGuiParam):
         rec.FinalResult()
         for res in resultlist["result"]:
             phraseword = self.__wordToPhrase(res["word"], res["start"], res["end"])
-            phresetokens.append(phraseword)
-        return PhraseToken(phresetokens)
+            phrasetokens.append(phraseword)
+        return PhraseToken(phrasetokens)
 
     def __wordToPhrase(self, word: str, start: float, end: float) -> PhraseToken:
         charlist = []
