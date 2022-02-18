@@ -1,6 +1,8 @@
 import unittest
 from unittest.mock import patch, Mock, MagicMock
 
+import numpy as np
+
 from src.boundary.chartoken import CharToken
 from src.boundary.guiparam.guiparam import GuiParam
 from src.boundary.guiparam.paramtype import ParamType
@@ -42,7 +44,7 @@ class TestDeepInit(TestDeep):
 @patch.object(Model, '__init__', return_value=None)
 @patch.object(Model, 'createStream', return_value=MagicMock())
 @patch.object(Buffer, '__init__', return_value=None)
-@patch.object(Buffer, 'getAudioSec', side_effect=[b'01010', b''])
+@patch.object(Buffer, 'getAudioNp', side_effect=[np.frombuffer(b'01',np.int16), np.frombuffer(b'',np.int16)])
 @patch.object(Buffer, 'close', return_value=None)
 @patch.object(DeepspeechImpl, '_DeepspeechImpl__transcriptToPhrase', return_value= True)
 @patch.object(DeepspeechImpl, 'getSamplerate', return_value= 16000)
@@ -71,7 +73,7 @@ class TestDeepGetText(TestDeep):
         mock_bufferinit.assert_called_once_with(mock_audiobuffer, 16, 16000, mock_task)
         mock_modelcreate.assert_called_once()
         self.assertEqual(mock_buffergetaudio.call_count, 2)
-        mock_stream.feedAudioContent.assert_called_once_with(b'01010')
+        mock_stream.feedAudioContent.assert_called_once_with(np.frombuffer(b'01', np.int16))
         mock_stream.finishStreamWithMetadata.assert_called_once_with(1)
         mock_bufferclose.assert_called_once()
         mock_deeptophrase.assert_called_once()
@@ -88,14 +90,17 @@ class TestDeepTranscriptToPhrase(TestDeep):
         mock_modelinit = MagicMock(return_value="test")
 
         mock_token1 = MagicMock()
-        token1 = {'text': 's', 'start_time': 0.1}
-        mock_token1.__getitem__.side_effect = token1.__getitem__
+
+        mock_token1.text = 's'
+        mock_token1.start_time= 0.1
+
         mock_token2 = MagicMock()
-        token2 = {'text': 't', 'start_time': 0.2}
-        mock_token2.__getitem__.side_effect = token2.__getitem__
+        mock_token2.text = 't'
+        mock_token2.start_time= 0.2
+
         mock_token3 = MagicMock()
-        token3 = {'text': 'v', 'start_time': 0.3}
-        mock_token3.__getitem__.side_effect = token3.__getitem__
+        mock_token3.text = 'v'
+        mock_token3.start_time= 0.3
         mock_token = [mock_token1, mock_token2, mock_token3]
         deep = DeepspeechImpl(mock_task)
         getattr(deep, "_DeepspeechImpl__transcriptToPhrase")(mock_token)
