@@ -32,27 +32,27 @@ class DeepspeechImpl(ITranslatorTask, ITranslatorGuiParam):
     def getText(self, audiobuffer : BufferedReader, duration : float) -> PhraseToken:
         buffer = Buffer(audiobuffer, duration, self.getSamplerate(), self.__task)
         ctx = self.__model.createStream()
-        chunk = buffer.getAudioSec()
+        chunk = buffer.getAudioNp()
         while len(chunk):
             ctx.feedAudioContent(chunk)
-            chunk = buffer.getAudioSec()
+            chunk = buffer.getAudioNp()
 
         buffer.close()
         metadata : Metadata= ctx.finishStreamWithMetadata(1)
-        candidate : CandidateTranscript= metadata.transcripts()[0]
-        phrasetoken = self.__transcriptToPhrase(candidate.tokens())
+        candidate : CandidateTranscript= metadata.transcripts[0]
+        phrasetoken = self.__transcriptToPhrase(candidate.tokens)
         return phrasetoken
 
     def __transcriptToPhrase(self, tokens) -> PhraseToken:
         charlist = []
         tokenlistlenght = len(tokens)
         for num, token in enumerate(tokens, start=0):
-            char = token["text"]
-            start = token["start_time"]
+            char = token.text
+            start = token.start_time
             if(tokenlistlenght - 1 <= num):
-                end = token["start_time"]+ 0.02
+                end = token.start_time+ 0.02
             else:
-                end = tokens[num+1]["start_time"]
+                end = tokens[num+1].start_time
             charlist.append(CharToken(char, start, end))
         return PhraseToken(charlist)
 

@@ -7,9 +7,15 @@ class PhraseToken:
     starttime : float = []
     endtime : float = []
 
-    def __init__(self, **kwargs):
-        phraselist = kwargs.get("phraselist", None)
-        charlist = kwargs.get("charlist", None)
+    def __init__(self, list):
+        phraselist = None
+        charlist = None
+
+        if(type(list[0]) == PhraseToken):
+            phraselist = list
+        else:
+            charlist = list
+
         if(charlist != None):
             self.chartokenlist = sorted(charlist, key=lambda x: (x.starttime, x.endtime))
             if (len(self.chartokenlist) >= 1):
@@ -49,12 +55,12 @@ class PhraseToken:
         for chart in self.chartokenlist:
             if(chart.char == " " or chart.char == "\n"):
                 if(len(charlist) != 0):
-                    phraselist.append(PhraseToken(charlist=charlist))
+                    phraselist.append(PhraseToken(charlist))
                     charlist = []
             else:
                 charlist.append(chart)
         if (len(charlist) != 0):
-            phraselist.append(PhraseToken(charlist=charlist))
+            phraselist.append(PhraseToken(charlist))
             charlist = []
         return phraselist
 
@@ -65,7 +71,7 @@ class PhraseToken:
             firslist.pop()
         while (firslist[0].char == " " or firslist[0].char == "\n"):
             firslist.pop(0)
-        firstphrase = PhraseToken(charlist=firslist)
+        firstphrase = PhraseToken(firslist)
 
         lastlist = self.chartokenlist[pos:]
 
@@ -73,7 +79,7 @@ class PhraseToken:
             lastlist.pop()
         while (lastlist[0].char == " " or lastlist[0].char == "\n"):
             lastlist.pop(0)
-        lastphrase = PhraseToken(charlist=lastlist)
+        lastphrase = PhraseToken(lastlist)
         return [firstphrase, lastphrase]
 
     def insertAtPos(self, pos : int, char : str):

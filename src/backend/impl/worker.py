@@ -25,5 +25,6 @@ class Worker(IWorkerStart):
             return True
         except Exception as e:
             task.errorcode = e
+            print(e)
             return False
 

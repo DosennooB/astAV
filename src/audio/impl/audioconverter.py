@@ -16,7 +16,7 @@ class Audioconverter(IAudioTask):
         ffout = (
             ffmpeg
                 .input(self.__task.filelocation)
-                .output('-', format='wav', acodec='pcm_s16le', ac=1, ar=self.__samplerate)
+                .output('pipe:', format='wav', acodec='pcm_s16le', ac=1, ar=self.__samplerate)
                 .overwrite_output()
                 .run_async(pipe_stdout=True)
         )
