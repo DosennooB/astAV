@@ -133,11 +133,11 @@ class Split:
             decrement = 1
 
         if(len(text) - decrement <= self.maxcompletlenght):
-            for gabpos in gabposlist:
+            for gabpos in reversed(gabposlist):
                 firstvalid = len(text[:gabpos].strip()) <= self.maxlinelenght
                 secondvalid = len(text[gabpos:].strip()) <= self.maxlinelenght
                 if(firstvalid and secondvalid):
-                    textcandidate.insertAtPos(gabpos, "\n")
+                    textcandidate.insertAtPos(gabpos+1, "\n")
                     return True
         return False
 
