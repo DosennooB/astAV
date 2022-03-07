@@ -6,6 +6,7 @@ from src.boundary.chartoken import CharToken
 from src.translator.service.itranslatortask import ITranslatorTask
 from src.translator.service.itranslatorguiparam import ITranslatorGuiParam
 from src.translator.util.buffer import Buffer
+from src.boundary.statustype import StatusTyp
 from deepspeech import *
 from src.boundary.stask import Stask
 import gettext
@@ -38,6 +39,8 @@ class DeepspeechImpl(ITranslatorTask, ITranslatorGuiParam):
             chunk = buffer.getAudioNp()
 
         buffer.close()
+        if(self.__task.getStatus() == StatusTyp.CANCELD):
+            return None
         metadata : Metadata= ctx.finishStreamWithMetadata(1)
         candidate : CandidateTranscript= metadata.transcripts[0]
         phrasetoken = self.__transcriptToPhrase(candidate.tokens)

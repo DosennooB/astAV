@@ -5,6 +5,7 @@ from src.boundary.phrasetoken import PhraseToken
 from src.translator.util.buffer import Buffer
 from src.boundary.chartoken import CharToken
 from src.boundary.guiparam.guiparam import *
+from src.boundary.statustype import StatusTyp
 from _io import BufferedReader
 from vosk import Model, KaldiRecognizer
 import json
@@ -32,6 +33,8 @@ class VoskImpl(ITranslatorTask, ITranslatorGuiParam):
             chunk = buffer.getAudioSec()
 
         buffer.close()
+        if(self.__task.getStatus() == StatusTyp.CANCELD):
+            return None
         resultlist = json.loads(rec.Result())
         rec.FinalResult()
         for res in resultlist["result"]:

@@ -1,6 +1,7 @@
 from src.boundary.stask import Stask
 import numpy as np
 from _io import BufferedReader
+from src.boundary.statustype import StatusTyp
 
 class Buffer:
     __audiobuffer : BufferedReader = []
@@ -18,7 +19,10 @@ class Buffer:
 #2 da ein sample 16 bit hat aber pro read immer ein Byte gelesen wird
 
     def getAudioSec(self) -> bytes:
-        chunk =  self.__audiobuffer.read(self.__samplerate * 2)
+        if(self.__task.getStatus() == StatusTyp.CANCELD):
+            chunk = b''
+        else:
+            chunk =  self.__audiobuffer.read(self.__samplerate * 2)
         self.__offset += 1
         self.__updateProgress()
         return chunk
@@ -26,14 +30,20 @@ class Buffer:
     def getAudioSeconds(self, x : int) -> bytes:
         if(x < 1):
             x = 1
-        chunk = self.__audiobuffer.read(self.__samplerate * x * 2)
+        if(self.__task.getStatus() == StatusTyp.CANCELD):
+            chunk = b''
+        else:
+            chunk = self.__audiobuffer.read(self.__samplerate * x * 2)
         self.__offset += x
         self.__updateProgress()
         return chunk
 
 
     def getAudioNp(self) -> np.numarray:
-        chunk = np.frombuffer(self.__audiobuffer.read(self.__samplerate * 2), np.int16)
+        if(self.__task.getStatus() == StatusTyp.CANCELD):
+            chunk = np.frombuffer(b'', np.int16)
+        else:
+            chunk = np.frombuffer(self.__audiobuffer.read(self.__samplerate * 2), np.int16)
         self.__offset += 1
         self.__updateProgress()
         return chunk
