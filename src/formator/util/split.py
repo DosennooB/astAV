@@ -101,7 +101,10 @@ class Split:
                     timegabvalue = newtimegabvalue
                     timegabpos = num
         if(timegabpos == -1):
-            timegabpos = self.maxlinelenght
+            if(len(textcandidate.getText()) > self.maxlinelenght):
+                timegabpos = self.maxlinelenght
+            else:
+                timegabpos = int(len(textcandidate.getText())/2)
         return textcandidate.splitAtPos(timegabpos)
 
     def __segmentHasValidCompletLenght(self, textcandidate : PhraseToken) -> bool:

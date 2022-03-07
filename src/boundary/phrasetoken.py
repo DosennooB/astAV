@@ -74,13 +74,15 @@ class PhraseToken:
         firstphrase = PhraseToken(firslist)
 
         lastlist = self.chartokenlist[pos:]
-
-        while(lastlist[-1].char == " " or lastlist[-1].char == "\n"):
-            lastlist.pop()
-        while (lastlist[0].char == " " or lastlist[0].char == "\n"):
-            lastlist.pop(0)
-        lastphrase = PhraseToken(lastlist)
-        return [firstphrase, lastphrase]
+        if(len(lastlist) > 0):
+            while(lastlist[-1].char == " " or lastlist[-1].char == "\n"):
+                lastlist.pop()
+            while (lastlist[0].char == " " or lastlist[0].char == "\n"):
+                lastlist.pop(0)
+            lastphrase = PhraseToken(lastlist)
+            return [firstphrase, lastphrase]
+        else:
+            return [firstphrase]
 
     def insertAtPos(self, pos : int, char : str):
         if(len(self.chartokenlist) == pos):
