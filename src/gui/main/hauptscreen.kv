@@ -1,0 +1,20 @@
+#:import _ gettext.gettext
+#:include src/gui/main/tasktable.kv
+
+
+<HauptScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: _('Aufgaben')
+        BoxLayout:
+            id: listlayout
+            orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                id: processing
+                text: _('starte Verarbeitung')
+            Button:
+                id: newtask
+                text: _('neue Aufgabe')

@@ -1,0 +1,19 @@
+#:include src/gui/render/rendertask.kv
+#:import _ gettext.gettext
+
+<RenderScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: _('Aufgaben in Bearbeitung')
+        BoxLayout:
+            id: renderlist
+            orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                id: cancel
+                text: _('Verarbeitung stoppen')
+            Button:
+                id: back
+                text: _('Zurück zum Hauptbildschirm')

@@ -1,0 +1,16 @@
+#:import _ gettext.gettext
+
+<RenderTask>:
+    orientation: 'horizontal'
+    Label:
+        id: filename
+        text: _('Dateiname')
+    Label:
+        id: step
+        text: _('Schritt')
+    ProgressBar:
+        id: progress
+        value: 0
+    Label:
+        id: status
+        text: _('Warte')

@@ -1,0 +1,78 @@
+#:import _ gettext.gettext
+<ParamBox>:
+
+<ParamCheckBoxBox>:
+    BoxLayout:
+        orientation: 'horizontal'
+        Label:
+            id: displayname
+            text: _('parameter Name')
+        CheckBox:
+            id: valueparameter
+
+<ParamDirBox>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: displayname
+            text: _('parameter Name')
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                id: valueparameter
+                text: ""
+            Button:
+                id: dirdialog
+                text: _("Ordner ändern")
+
+<ParamFileBox>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: displayname
+            text: _('parameter Name')
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                id: valueparameter
+                text:  ""
+            Button:
+                id: filedialog
+                text: _("Datei ändern")
+
+<ParamSpinnerBox>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: displayname
+            text: _('parameter Name')
+        Spinner:
+            id: valueparameter
+            text: 'test'
+            values: 'test', 'test1'
+
+<ParamNumberBox>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: displayname
+            text: _('parameter Name')
+        BoxLayout:
+            orientation: 'horizontal'
+            TextInput:
+                id: valueparameter
+                text: str(valueslider.value)
+                input_filter: int
+            Slider:
+                id: valueslider
+                step: 1
+                value: 50
+
+<ParamStringBox>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: displayname
+            text: _('parameter Name')
+        TextInput:
+            id: valueparameter

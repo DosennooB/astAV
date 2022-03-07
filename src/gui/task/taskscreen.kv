@@ -1,0 +1,41 @@
+#:include src/gui/utils/parambox.kv
+#:import _ gettext.gettext
+
+<TaskScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: _("Aufgabenbearbeitung")
+        ParamFileBox:
+            id: filelocation
+        ParamDirBox:
+            id: writelocation
+        ParamStringBox
+            id: filename
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: _("Translatorauswahl")
+            Spinner:
+                id: translator
+        BoxLayout:
+            orientation: 'vertical'
+            id: translatorparamlayout
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: _("Formatorauswahl")
+            Spinner:
+                id: formator
+        BoxLayout:
+            orientation: 'vertical'
+            id: formatorparamlayout
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                id: cancel
+                text: _("Abrechen")
+            Button:
+                id: ok
+                text: _("OK")
+

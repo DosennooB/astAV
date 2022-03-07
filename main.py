@@ -1,4 +1,5 @@
 from src.boundary.stask import Stask
+from src.gui.gui import astAVGui
 from src.translator.service.itranslatortask import ITranslatorTask
 from src.translator.impl.deepspeechimpl import DeepspeechImpl
 from src.translator.impl.voskimpl import VoskImpl
@@ -6,7 +7,8 @@ from src.formator.service.iformatortask import IFormatorTask
 from src.formator.impl.txt import Txt
 from src.formator.impl.srt import Srt
 from src.backend.impl.scheduler import Scheduler
-
+import gettext
+_ = gettext.gettext
 class test:
     def deeptext(self):
         translator = ITranslatorTask.__subclasses__()
@@ -52,4 +54,14 @@ class test:
         Scheduler.insertTask(task)
         Scheduler.startTranscription()
 
-test().vosksrt()
+task = Stask(
+    filelocation="Audio_zone-London_life.mp3",
+    filename="Audio_zone-London_life_vosksrt",
+    writelocation="",
+    translator=VoskImpl,
+    translatorparam={"modellocation": "speechmodels/vosk/en/vosk_us"},
+    formator=Srt,
+    formatorparam={"splitmode": "netflix"}
+)
+Scheduler.insertTask(task)
+astAVGui().run()
