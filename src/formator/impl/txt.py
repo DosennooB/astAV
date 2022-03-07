@@ -45,9 +45,9 @@ class Txt(IFormatorTask, IFormatorGuiParam):
         textmodeparam.displayname = _("Zeilen Modus")
         textmodeparam.defvalue = "oneline"
         textmodeparam.mouesover = _("Gibt ob und an welcher Stelle ein zeilenumbruch statt finden soll")
-        textmodeparam.spinnerlist = {"oneline" : _("Eine Zeile"),
-                                     "char80" : _("80 Zeichen pro Zeile"),
-                                     "char120" : _("120 Zeichen pro Zeile")}
+        textmodeparam.spinnerlist = { _("Eine Zeile"): "oneline" ,
+                                     _("80 Zeichen pro Zeile"): "char120",
+                                      _("120 Zeichen pro Zeile"): "char120"}
         return [textmodeparam]
 
     @staticmethod

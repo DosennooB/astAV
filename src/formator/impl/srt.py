@@ -4,7 +4,6 @@ from src.boundary.phrasetoken import PhraseToken
 from src.boundary.guiparam.guiparam import *
 from src.boundary.stask import Stask
 from src.formator.util.split import Split
-from datetime import timedelta, datetime
 import gettext
 
 _ = gettext.gettext
@@ -69,8 +68,8 @@ class Srt(IFormatorTask, IFormatorGuiParam):
         splitmodeparam.displayname = _("Trennmodus")
         splitmodeparam.defvalue = "ardzdf"
         splitmodeparam.mouesover = _("Gibt an nach welchen Vorgaben die Untertitel getrennt werden sollen. \n Kann die Vorgaben nicht immer einhalten")
-        splitmodeparam.spinnerlist = {"ardzdf" : _("ARD / ZDF"),
-                                      "netflix" : _("Netflix")}
+        splitmodeparam.spinnerlist = {_("ARD / ZDF"): "ardzdf",
+                                       _("Netflix"): "netflix"}
         return [splitmodeparam]
 
     @staticmethod

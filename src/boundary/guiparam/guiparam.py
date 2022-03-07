@@ -21,7 +21,7 @@ class GuiParamFile(GuiParam):
         self.type = ParamType.FILE
 
 class GuiParamSpinner(GuiParam):
-    spinnerlist : {str} = None
+    spinnerlist: dict = None
     def __init__(self):
         self.type = ParamType.SPINNER
 
@@ -29,6 +29,7 @@ class GuiParamNumber(GuiParam):
     minvalue : int = None
     maxvalue : int = None
     isinteger : bool = None
+    step : float = None
     def __init__(self):
         self.type = ParamType.NUMBER
 
