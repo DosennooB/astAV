@@ -40,7 +40,9 @@ class Scheduler(ISchedulerActivate):
     @staticmethod
     def clearStatus():
         for task in Scheduler.__tasklist:
+            task: Stask
             task.setStatus(StatusTyp.WAITING)
+            task.setProgress(0)
 
     @staticmethod
     def clearCallback():
