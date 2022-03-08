@@ -11,7 +11,9 @@ class PhraseToken:
         phraselist = None
         charlist = None
 
-        if(type(list[0]) == PhraseToken):
+        if(len(list)==0):
+            pass
+        elif(type(list[0]) == PhraseToken):
             phraselist = list
         else:
             charlist = list
@@ -23,7 +25,7 @@ class PhraseToken:
                 self.endtime = self.chartokenlist[-1].endtime
 
 
-        else:
+        elif(phraselist != None):
             phraseinter = sorted(phraselist, key=lambda x: (x.starttime, x.endtime))
             phrasefirst = phraseinter.pop(0)
 

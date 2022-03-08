@@ -16,7 +16,6 @@ class astAVGui(App):
         return sm
 
     def switchToMain(self):
-        print("done")
         app = App.get_running_app()
         new_hauptscreen = HauptScreen(name="Übersicht")
         app.root.switch_to(new_hauptscreen)
