@@ -87,9 +87,9 @@ class TestTxtGetNeededParams(TestTxt):
         self.assertEqual(type(param.displayname), str)
         self.assertEqual(param.defvalue, "oneline")
         self.assertEqual(type(param.mouesover), str)
-        self.assertEqual(type(param.spinnerlist["oneline"]), str)
-        self.assertEqual(type(param.spinnerlist["char80"]), str)
-        self.assertEqual(type(param.spinnerlist["char120"]), str)
+        self.assertEqual(type(param.spinnerlist[_("Eine Zeile")]), str)
+        self.assertEqual(type(param.spinnerlist[_("80 Zeichen pro Zeile")]), str)
+        self.assertEqual(type(param.spinnerlist[_("120 Zeichen pro Zeile")]), str)
 
 class TestTxtGetName(TestTxt):
     def test_getName_00(self):

@@ -5,6 +5,10 @@ from src.boundary.guiparam.guiparam import GuiParamSpinner
 from src.formator.impl.srt import Srt
 from src.formator.util.split import Split
 
+import gettext
+
+_ = gettext.gettext
+
 class TestSrt(unittest.TestCase):
     pass
 
@@ -126,8 +130,8 @@ class TestSrtgetNeededParams(TestSrt):
         self.assertEqual(type(splitmodeparam.displayname), str)
         self.assertEqual(splitmodeparam.defvalue, "ardzdf")
         self.assertEqual(type(splitmodeparam.mouesover), str)
-        self.assertEqual(type(splitmodeparam.spinnerlist["ardzdf"]), str)
-        self.assertEqual(type(splitmodeparam.spinnerlist["netflix"]), str)
+        self.assertEqual(type(splitmodeparam.spinnerlist[_("ARD / ZDF")]), str)
+        self.assertEqual(type(splitmodeparam.spinnerlist[_("Netflix")]), str)
 
 
 class TestStrgetName(TestSrt):

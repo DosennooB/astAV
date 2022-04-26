@@ -164,6 +164,7 @@ class TestSplitgetbiggestTimeGab(TestSplit):
         mock_phrase.endtime = 4.0
         mock_phrase.chartokenlist = [mock_char1, mock_char2, mock_char3]
         mock_phrase.splitAtPos = MagicMock(return_value=True)
+        mock_phrase.getText = MagicMock(return_value="aaa")
         split = Split()
         split.maxlinelenght = 2
         bool = getattr(split, "_Split__getBiggestTimeGab")(mock_phrase)
