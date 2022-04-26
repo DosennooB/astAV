@@ -18,7 +18,7 @@ class Audioconverter(IAudioTask):
                 .input(self.__task.filelocation)
                 .output('pipe:', format='wav', acodec='pcm_s16le', ac=1, ar=self.__samplerate)
                 .overwrite_output()
-                .run_async(pipe_stdout=True)
+                .run_async(pipe_stdout=True, quiet=True)
         )
         return ffout.stdout
 

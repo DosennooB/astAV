@@ -3,6 +3,7 @@ from src.backend.impl.worker import Worker
 from src.boundary.stask import Stask
 from src.boundary.statustype import StatusTyp
 
+
 class Scheduler(ISchedulerActivate):
     __tasklist: [Stask] = []
     __temptask: Stask = None

@@ -54,14 +54,4 @@ class test:
         Scheduler.insertTask(task)
         Scheduler.startTranscription()
 
-task = Stask(
-    filelocation="Audio_zone-London_life.mp3",
-    filename="Audio_zone-London_life_vosksrt",
-    writelocation="",
-    translator=VoskImpl,
-    translatorparam={"modellocation": "speechmodels/vosk/en/vosk_us"},
-    formator=Srt,
-    formatorparam={"splitmode": "netflix"}
-)
-Scheduler.insertTask(task)
 astAVGui().run()

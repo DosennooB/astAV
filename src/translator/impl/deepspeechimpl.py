@@ -7,7 +7,7 @@ from src.translator.service.itranslatortask import ITranslatorTask
 from src.translator.service.itranslatorguiparam import ITranslatorGuiParam
 from src.translator.util.buffer import Buffer
 from src.boundary.statustype import StatusTyp
-from deepspeech import *
+from deepspeech import Model, Metadata, CandidateTranscript
 from src.boundary.stask import Stask
 import gettext
 

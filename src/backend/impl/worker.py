@@ -8,25 +8,26 @@ from src.audio.impl.audioconverter import Audioconverter
 class Worker(IWorkerStart):
     def startTask(self, task : Stask) -> bool:
         try:
-              task.setStatus(StatusTyp.PROCESSING)
-              translatorn : ITranslatorTask = task.translator
-              translator = translatorn(task)
-              samplerate = translator.getSamplerate()
-              audioconverter = Audioconverter(task, samplerate)
+            task.setStatus(StatusTyp.PROCESSING)
+            translatorn : ITranslatorTask = task.translator
+            translator = translatorn(task)
+            samplerate = translator.getSamplerate()
+            audioconverter = Audioconverter(task, samplerate)
 
-              duration = audioconverter.getDuration()
-              audiostream = audioconverter.getAudio()
-              textcanidate = translator.getText(audiostream,duration)
-              if(task.getStatus() == StatusTyp.CANCELD):
-                     return False
-              task.setStep(2)
-              formatorn : IFormatorTask = task.formator
-              formator = formatorn(task)
-              formator.saveText(textcanidate)
-              if (task.getStatus() == StatusTyp.CANCELD):
-                     return False
-              task.setStatus(StatusTyp.DONE)
-              return True
+            duration = audioconverter.getDuration()
+            audiostream = audioconverter.getAudio()
+            textcanidate = translator.getText(audiostream,duration)
+            if(task.getStatus() == StatusTyp.CANCELD):
+                 return False
+            task.setStep(2)
+            formatorn : IFormatorTask = task.formator
+            formator = formatorn(task)
+            formator.saveText(textcanidate)
+            if (task.getStatus() == StatusTyp.CANCELD):
+                 return False
+            else:
+                task.setStatus(StatusTyp.DONE)
+                return True
         except Exception as e:
             task.errorcode = e
             print(e)
