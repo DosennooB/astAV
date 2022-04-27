@@ -35,7 +35,7 @@ class Srt(IFormatorTask, IFormatorGuiParam):
     def saveText(self, textcandidat : PhraseToken) -> bool:
         phraselist = self.__split.splitTextToSubtitel(textcandidat)
 
-        path = "".join(self.task.writelocation + self.task.filename + ".srt")
+        path = "".join(self.task.writelocation+"/" + self.task.filename + ".srt")
         f = open(path, 'w')
         for num, phrase in enumerate(phraselist, start=1):
             phrase : PhraseToken
