@@ -2,13 +2,13 @@
 Automatic speech recongition toolkit for Audio and Video.
 
 
-##Task
+## Task
 This programme can be used to create a subtitle or text file for any audio or video file via a GUI. The programme uses open source speech recognition frameworks to convert the spoken word into text.
 
-###Note
+### Note
 The GUI is currently only implemented in German.
 
-##Use
+## Use
 For Windows and Linux, the respective zipped folder can be downloaded and unzipped.
 Running the astAV file starts the programme. 
 
@@ -21,7 +21,7 @@ In addition to speech recognition, the programme also asks for the path to the d
 
 Vosk speech recognition is recommended.
 
-##Starting with Python
+## Starting with Python
 
 The programme is written in Python 3.7.
 The following dependencies are required to run the programme.
