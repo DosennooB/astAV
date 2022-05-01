@@ -2,18 +2,24 @@
 
 <TaskTable>:
     orientation: 'horizontal'
+    size_hint: (1, None)
+    height: 100
     Label:
         id: filename
         text: _('Dateiname')
     Label:
         id: translator
         text: _('Translator')
+        size_hint: (0.8,1)
     Label:
         id: formator
         text: _('Formator')
+        size_hint: (0.8,1)
     Button:
         id: edit
         text: _('bearbeiten')
+        size_hint:(0.6,1)
     Button:
         id: remove
         text: _('Löschen')
+        size_hint:(0.6,1)

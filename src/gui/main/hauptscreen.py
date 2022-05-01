@@ -1,6 +1,7 @@
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.core.window import Window
@@ -17,10 +18,11 @@ _ = gettext.gettext
 
 class HauptScreen(Screen):
     def on_enter(self, *args):
-        listlayout: BoxLayout = self.ids["listlayout"]
+        listlayout: GridLayout = self.ids["listlayout"]
         tasklist = Scheduler.getTaskList()
         if (len(tasklist) == 0):
             dropfile_label = Label(text=_("Datei hier ablegen"))
+            dropfile_label.text_size = (None,50)
             listlayout.add_widget(dropfile_label)
 
         else:

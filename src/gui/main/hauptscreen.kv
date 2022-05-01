@@ -7,14 +7,30 @@
         orientation: 'vertical'
         Label:
             text: _('Aufgaben')
-        BoxLayout:
-            id: listlayout
-            orientation: 'vertical'
+            font_size: '32dp'
+            size_hint: (1,0.2)
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            GridLayout:
+                id: listlayout
+                cols: 1
+                #orientation: 'vertical'
+                padding: '5dp'
+                spacing: '5dp'
+                size_hint_y: None
+                height: self.minimum_height
         BoxLayout:
             orientation: 'horizontal'
+            spacing: '20dp'
+            padding: '5dp'
+            size_hint: (1, None)
+            height: '70dp'
             Button:
                 id: processing
                 text: _('starte Verarbeitung')
+                font_size: '25dp'
             Button:
                 id: newtask
                 text: _('neue Aufgabe')
+                font_size: '25dp'
