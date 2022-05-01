@@ -1,41 +1,103 @@
 #:include src/gui/utils/parambox.kv
 #:import _ gettext.gettext
 
+<Linediv>:
+    canvas:
+        Line:
+            points: (self.x,self.center_y,self.x+self.width,self.center_y)
+
 <TaskScreen>:
     BoxLayout:
         orientation: 'vertical'
         Label:
             text: _("Aufgabenbearbeitung")
+            font_size: '32dp'
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding: '5dp'
+            spacing: '10dp'
+            Label:
+                size_hint: (None,1)
+                text_size: None, None
+                size: self.texture_size
+                text: _("Datei")
+            Linediv:
+
         ParamFileBox:
             id: filelocation
         ParamDirBox:
             id: writelocation
         ParamStringBox
             id: filename
+
         BoxLayout:
-            orientation: 'vertical'
+            orientation:'horizontal'
+            padding: '5dp'
+            spacing: '10dp'
+            Label:
+                size_hint: (None,1)
+                text_size: None, None
+                size: self.texture_size
+                text: _("Spracherkennung")
+            Linediv:
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding: ('25dp','0dp','0dp','0dp')
             Label:
                 text: _("Translatorauswahl")
+                underline: True
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
             Spinner:
                 id: translator
         BoxLayout:
+            padding: ('25dp','0dp','0dp','0dp')
             orientation: 'vertical'
             id: translatorparamlayout
+            size_hint: (1,2)
+
         BoxLayout:
-            orientation: 'vertical'
+            orientation:'horizontal'
+            padding: '5dp'
+            spacing: '10dp'
+            Label:
+                size_hint: (None,1)
+                text_size: None, None
+                size: self.texture_size
+                text: _("Speicherformat")
+            Linediv:
+
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: ('25dp','0dp','0dp','0dp')
             Label:
                 text: _("Formatorauswahl")
+                underline: True
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
             Spinner:
                 id: formator
         BoxLayout:
+            padding: ('25dp','0dp','0dp','0dp')
             orientation: 'vertical'
             id: formatorparamlayout
+            size_hint: (1,2)
         BoxLayout:
             orientation: 'horizontal'
+            spacing: '20dp'
+            padding: '5dp'
+            size_hint: (1, None)
+            height: '70dp'
             Button:
                 id: cancel
                 text: _("Abrechen")
+                font_size: '25dp'
             Button:
                 id: ok
                 text: _("OK")
+                font_size: '25dp'
 

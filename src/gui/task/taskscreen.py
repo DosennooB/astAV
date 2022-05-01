@@ -1,5 +1,6 @@
 from kivy.uix.screenmanager import Screen
 from kivy.uix.spinner import Spinner
+from kivy.uix.label import Label
 from kivy.app import App
 
 from src.gui.utils.parambox import *
@@ -15,6 +16,10 @@ from src.backend.impl.scheduler import Scheduler
 from src.boundary.stask import Stask
 import gettext
 _ = gettext.gettext
+
+class Linediv(Label):
+    pass
+
 
 class TaskScreen(Screen):
     def on_enter(self, *args):
