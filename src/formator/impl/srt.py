@@ -74,7 +74,7 @@ class Srt(IFormatorTask, IFormatorGuiParam):
 
     @staticmethod
     def getName() -> str:
-        return _("str Datei")
+        return _("srt Datei")
 
     @staticmethod
     def getDescription() -> str:
