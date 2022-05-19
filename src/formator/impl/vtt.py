@@ -4,6 +4,7 @@ from src.boundary.phrasetoken import PhraseToken
 from src.boundary.guiparam.guiparam import *
 from src.boundary.stask import Stask
 from src.formator.util.split import Split
+from src.formator.util.splitpolicie import *
 import gettext
 
 _ = gettext.gettext
@@ -14,26 +15,14 @@ class Vtt(IFormatorTask, IFormatorGuiParam):
     def __init__(self, task : Stask):
         self.task = task
         self.__split = Split()
-        splitmode = self.task.formatorparam.get("splitmode")
-        if (splitmode == "netflix"):
-            self.__split.textlines = 2
-            self.__split.maxlinelenght = 42
-            self.__split.maxcompletlenght = 84
-            self.__split.maxtime = 7  # guess
-            self.__split.mintime = 5 / 6
-            self.__split.charpersecond = 20
-            self.__split.timefactor = 1
-        elif (splitmode == "ardzdf"):
-            self.__split.textlines = 2
-            self.__split.maxlinelenght = 37
-            self.__split.maxcompletlenght = 74
-            self.__split.maxtime = 7  # guess
-            self.__split.mintime = 1
-            self.__split.charpersecond = 15
-            self.__split.timefactor = 1
 
     def saveText(self, textcandidat : PhraseToken) -> bool:
-        phraselist = self.__split.splitTextToSubtitel(textcandidat)
+        phraselist: list
+        splitmode = self.task.formatorparam.get("splitmode")
+        if(splitmode == "einzelwort"):
+            phraselist = textcandidat.splitInToWords()
+        else:
+            phraselist = self.__split.splitTextToSubtitelpolicie(textcandidat, splitmode)
 
         path = "".join(self.task.writelocation+"/" + self.task.filename + ".vtt")
         f = open(path, 'w')
@@ -68,8 +57,9 @@ class Vtt(IFormatorTask, IFormatorGuiParam):
         splitmodeparam.displayname = _("Trennmodus")
         splitmodeparam.defvalue = "ardzdf"
         splitmodeparam.mouesover = _("Gibt an nach welchen Vorgaben die Untertitel getrennt werden sollen. \n Kann die Vorgaben nicht immer einhalten")
-        splitmodeparam.spinnerlist = {_("ARD / ZDF"): "ardzdf",
-                                       _("Netflix"): "netflix"}
+        policienames =  Splitpolicie.getPolicieNames()
+        policienames[_("Einzelne Wörter")] = "einzelwort"
+        splitmodeparam.spinnerlist = policienames
         return [splitmodeparam]
 
     @staticmethod

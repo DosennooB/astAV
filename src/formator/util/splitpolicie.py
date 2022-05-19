@@ -35,3 +35,13 @@ class NetflixDePolicie(Splitpolicie):
     maxtime : float = 7.0
     mintime : float = 5/6
     charpersecond : float = 20
+
+class ArdZdfPolicie(Splitpolicie):
+    name: str = "ardzdf"
+    displayname: str = _("ARD / ZDF")
+    textlines: int = 2
+    maxlinelenght: int = 37
+    maxcompletlenght: int = 74
+    maxtime: float = 7.0
+    mintime: float = 1
+    charpersecond: float = 15

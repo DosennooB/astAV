@@ -13,6 +13,10 @@ class Split:
     __phrasetokendone = []
     __phrasetokentodo = []
 
+    def __init__(self):
+        self.__phrasetokendone = []
+        self.__phrasetokentodo = []
+
     def splitTextToLines(self, textcandidate : PhraseToken) -> [PhraseToken]:
         while len(textcandidate.getText()):
             puretext = textcandidate.getText()
