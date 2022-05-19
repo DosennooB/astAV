@@ -1,5 +1,6 @@
 from src.boundary.phrasetoken import PhraseToken
 from src.boundary.chartoken import CharToken
+from src.formator.util.splitpolicie import Splitpolicie
 
 class Split:
     textlines : int = 2
@@ -11,17 +12,6 @@ class Split:
     timefactor : float = 1
     __phrasetokendone = []
     __phrasetokentodo = []
-
-    def __init__(self):
-        self.textlines = 2
-        self.maxlinelenght = 42
-        self.maxcompletlenght = 84
-        self.maxtime = 7
-        self.mintime = 5/6
-        self.charpersecond = 20
-        self.timefactor = 1
-        self.__phrasetokendone = []
-        self.__phrasetokentodo = []
 
     def splitTextToLines(self, textcandidate : PhraseToken) -> [PhraseToken]:
         while len(textcandidate.getText()):
@@ -42,6 +32,16 @@ class Split:
             self.__phrasetokendone.append(firsttext)
             textcandidate = secondtext
         return self.__phrasetokendone
+
+    def splitTextToSubtitelpolicie(self, textcandidate : PhraseToken, policiename : str) -> [PhraseToken]:
+        policie = Splitpolicie.getPolicie(policiename)
+        self.textlines =policie.textlines
+        self.maxlinelenght = policie.maxlinelenght
+        self.maxcompletlenght = policie.maxcompletlenght
+        self.maxtime = policie.maxtime
+        self.mintime = policie.mintime
+        self.charpersecond = policie.charpersecond
+        return self.splitTextToSubtitel(textcandidate)
 
     def splitTextToSubtitel(self, textcandidate : PhraseToken) -> [PhraseToken]:
         self.__phrasetokentodo = [textcandidate]
