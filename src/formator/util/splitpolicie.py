@@ -45,3 +45,13 @@ class ArdZdfPolicie(Splitpolicie):
     maxtime: float = 7.0
     mintime: float = 1
     charpersecond: float = 15
+
+class MediaLabPolicie(Splitpolicie):
+    name: str = "thkoeln"
+    displayname: str = _("TH-Koeln")
+    textlines: int = 2
+    maxlinelenght: int = 37
+    maxcompletlenght: int = 74
+    maxtime: float = 7.0
+    mintime: float = 1
+    charpersecond: float = 17
