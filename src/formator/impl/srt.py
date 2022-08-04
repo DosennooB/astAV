@@ -9,6 +9,7 @@ import gettext
 
 _ = gettext.gettext
 
+
 class Srt(IFormatorTask, IFormatorGuiParam):
     task : Stask = []
     __split : Split = []

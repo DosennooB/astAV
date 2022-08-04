@@ -7,7 +7,7 @@ from src.boundary.chartoken import CharToken
 from src.boundary.guiparam.guiparam import *
 from src.boundary.statustype import StatusTyp
 from _io import BufferedReader
-from vosk import Model, KaldiRecognizer
+from vosk import Model, KaldiRecognizer, GpuInit
 import json
 import gettext
 
@@ -20,7 +20,9 @@ class VoskImpl(ITranslatorTask, ITranslatorGuiParam):
 
     def __init__(self, task: Stask):
         self.__task = task
+        GpuInit()
         self.__model = Model(task.translatorparam.get("modellocation"))
+
 
     def getText(self, audiobuffer: BufferedReader, duration: float) -> PhraseToken:
         phrasetokens = []

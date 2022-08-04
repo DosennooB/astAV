@@ -4,14 +4,15 @@ from src.translator.service.itranslatortask import ITranslatorTask
 from src.translator.impl.deepspeechimpl import DeepspeechImpl
 from src.translator.impl.voskimpl import VoskImpl
 from src.formator.service.iformatortask import IFormatorTask
-from src.formator.impl.txt import Txt
-from src.formator.impl.srt import Srt
+from src.formator.impl import *
+
 from src.backend.impl.scheduler import Scheduler
 
 from src.formator.util.splitpolicie import Splitpolicie
 
 import gettext
 _ = gettext.gettext
+
 class test:
     def deeptext(self):
         translator = ITranslatorTask.__subclasses__()
