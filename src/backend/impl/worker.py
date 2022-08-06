@@ -1,5 +1,7 @@
 from src.boundary.stask import Stask
 from src.backend.service.iworkerstart import IWorkerStart
+from src.corrector.impl import Dummy
+from src.corrector.service.icorrectortask import ICorrectorTask
 from src.translator.service.itranslatortask import ITranslatorTask
 from src.formator.service.iformatortask import IFormatorTask
 from src.boundary.statustype import StatusTyp
@@ -20,6 +22,15 @@ class Worker(IWorkerStart):
             if(task.getStatus() == StatusTyp.CANCELD):
                  return False
             task.setStep(2)
+            task.textcandidate = textcanidate
+
+            correctorn : ICorrectorTask = task.corrector
+            if(correctorn == []):
+                correctorn : Dummy
+            corrector = correctorn(task)
+            textcanidate = corrector.correctText(textcanidate)
+            task.textcandidate = textcanidate
+
             formatorn : IFormatorTask = task.formator
             formator = formatorn(task)
             formator.saveText(textcanidate)
