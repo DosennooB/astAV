@@ -1,3 +1,4 @@
+from src.boundary.phrasetoken import PhraseToken
 from src.boundary.statustype import StatusTyp
 
 class Stask:
@@ -11,8 +12,11 @@ class Stask:
     filename : str = []
     translator = []
     translatorparam = {}
+    corrector = []
+    correctorparam = {}
     formator = []
     formatorparam = {}
+    textcandidate : PhraseToken = []
 
 
     def __init__(self, *args, **kwargs):
@@ -23,8 +27,11 @@ class Stask:
         self.filename = kwargs.get("filename", [])
         self.translator = kwargs.get("translator", [])
         self.translatorparam = kwargs.get("translatorparam", {})
+        self.corrector = kwargs.get("corrector", [])
+        self.correctorparam = kwargs.get("correctorparam",{})
         self.formator = kwargs.get("formator", [])
         self.formatorparam = kwargs.get("formatorparam", {})
+        self.textcandidate = kwargs.get("textcandidate", [])
 
     def setProgress(self, progress : float):
         if(progress < 0 or progress > 1):

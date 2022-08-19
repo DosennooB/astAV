@@ -26,7 +26,7 @@ class Worker(IWorkerStart):
 
             correctorn : ICorrectorTask = task.corrector
             if(correctorn == []):
-                correctorn : Dummy
+                correctorn = Dummy
             corrector = correctorn(task)
             textcanidate = corrector.correctText(textcanidate)
             task.textcandidate = textcanidate
