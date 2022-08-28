@@ -41,6 +41,7 @@ class Worker(IWorkerStart):
                 return True
         except Exception as e:
             task.errorcode = e
+            task.setStatus(StatusTyp.ERROR)
             print(e)
             return False
 

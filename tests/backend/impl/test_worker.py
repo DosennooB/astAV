@@ -44,7 +44,7 @@ class TestWorkerStartTask(TestWorker):
         mock_translator.getText.assert_called_once_with(b'001010', 40)
 
         mock_formatornoti.assert_called_once_with(mock_task)
-        mock_formator.saveText.assert_called_once_with("textcanidate")
+        mock_formator.saveText.assert_called_once()
 
     def test_starkTask_01(self,
                           mock_getAudio : Mock,
@@ -52,7 +52,7 @@ class TestWorkerStartTask(TestWorker):
                           mock_init : Mock):
         mock_task = Mock()
         execpt = Exception('Test')
-        mock_task.setStatus = Mock(side_effect=execpt)
+        mock_task.setStatus = Mock(side_effect=[execpt,None])
         worker = Worker()
         bool = worker.startTask(mock_task)
         self.assertEqual(bool, False)
