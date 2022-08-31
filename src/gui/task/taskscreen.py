@@ -12,6 +12,8 @@ from src.translator.impl import *
 from src.translator.service.itranslatorguiparam import ITranslatorGuiParam
 from src.formator.impl import *
 from src.formator.service.iformatorguiparam import IFormatorGuiParam
+from src.corrector.impl import *
+from src.corrector.service.icorrectorguiparam import ICorrectorGuiParam
 from src.backend.impl.scheduler import Scheduler
 from src.boundary.stask import Stask
 import gettext
@@ -81,6 +83,34 @@ class TaskScreen(Screen):
             paramlayoutentry = self.generateParamBox(translatorparam)
             translatorparam_layout.add_widget(paramlayoutentry)
 
+        allcorrector = ICorrectorGuiParam.__subclasses__()
+        corrector_spinner: Spinner = self.ids["corrector"]
+        if (temptask.corrector == []):
+            corrector_spinner.text = allcorrector[0].getName()
+        else:
+            corrector_spinner.text = temptask.corrector.getName()
+        allcorrectornames = []
+        for corrector in allcorrector:
+            allcorrectornames.append(corrector.getName())
+        corrector_spinner.values = allcorrectornames
+
+        correctorparam_layout: BoxLayout = self.ids["correctorparamlayout"]
+        if (temptask.correctorparam == {}):
+            correctorguiparams = allcorrector[0].getNeededParams()
+        else:
+            correctorguiparams = temptask.corrector.getNeededParams()
+            for correctorguiparam in correctorguiparams:
+                correctorguiparam: GuiParam
+                if (type(correctorguiparam) == GuiParamSpinner):
+                    correctorguiparam: GuiParamSpinner
+                    defvalue = temptask.correctorparam[correctorguiparam.name]
+                    correctorguiparam.defvalue = defvalue
+                else:
+                    correctorguiparam.defvalue = temptask.correctorparam[correctorguiparam.name]
+        for correctorparam in correctorguiparams:
+            paramlayoutentry = self.generateParamBox(correctorparam)
+            correctorparam_layout.add_widget(paramlayoutentry)
+
         allformator = IFormatorGuiParam.__subclasses__()
         fromator_spinner: Spinner = self.ids["formator"]
         if(temptask.formator == []):
@@ -116,6 +146,7 @@ class TaskScreen(Screen):
         ok_button.bind(on_press=self.buttonOKCallback)
 
         translator_spinner.bind(text=self.spinnerChangeTranslatorCallback)
+        corrector_spinner.bind(text=self.spinnerChangeCorrectorCallback)
         fromator_spinner.bind(text=self.spinnerChangeFormatorCallback)
 
     def generateParamBox(self, guiparam: GuiParam):
@@ -156,6 +187,18 @@ class TaskScreen(Screen):
             translatorparam_layoutentry: ParamBox
             translatorparam.update({translatorparam_layoutentry.getName(): translatorparam_layoutentry.getValue()})
 
+        corrector = None
+        correctorname = self.ids["corrector"].text
+        for onecorrector in ICorrectorGuiParam.__subclasses__():
+            if (correctorname == onecorrector.getName()):
+                corrector = onecorrector
+
+        correctorparam = {}
+        correctorparam_layout: BoxLayout = self.ids["correctorparamlayout"]
+        for correctorparam_layoutentry in correctorparam_layout.children:
+            correctorparam_layoutentry: ParamBox
+            correctorparam.update({correctorparam_layoutentry.getName(): correctorparam_layoutentry.getValue()})
+
         formator = None
         fomatorname = self.ids["formator"].text
         for oneformator in IFormatorGuiParam.__subclasses__():
@@ -173,6 +216,8 @@ class TaskScreen(Screen):
                      filename=filename,
                      translator=translator,
                      translatorparam=translatorparam,
+                     corrector=corrector,
+                     correctorparam=correctorparam,
                      formator=formator,
                      formatorparam=formatorparam
                      )
@@ -213,3 +258,19 @@ class TaskScreen(Screen):
                     formator_layoutentry = self.generateParamBox(formatorguiparam)
                     formator_layoutentry.setup(formatorguiparam)
                     formatorparam_layout.add_widget(formator_layoutentry)
+
+    def spinnerChangeCorrectorCallback(self, instance, spinner):
+        correctorparam_layout: BoxLayout = self.ids["correctorparamlayout"]
+        correctorparam_layout.clear_widgets(correctorparam_layout.children)
+
+        allcorrector = ICorrectorGuiParam.__subclasses__()
+
+        corrector_spinner = self.ids["corrector"]
+
+        for corrector in allcorrector:
+            if (corrector.getName() == corrector_spinner.text):
+                correctorguiparams = corrector.getNeededParams()
+                for correctorguiparam in correctorguiparams:
+                    corrector_layoutentry = self.generateParamBox(correctorguiparam)
+                    corrector_layoutentry.setup(correctorguiparam)
+                    correctorparam_layout.add_widget(corrector_layoutentry)

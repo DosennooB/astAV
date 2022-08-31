@@ -67,6 +67,34 @@
                 size_hint: (None,1)
                 text_size: None, None
                 size: self.texture_size
+                text: _("Überarbeitung (optional)")
+            Linediv:
+
+        BoxLayout:
+            orientation: 'horizontal'
+            padding: ('25dp','0dp','0dp','0dp')
+            Label:
+                text: _("Korrektorauswahl")
+                underline: True
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+            Spinner:
+                id: corrector
+        BoxLayout:
+            padding: ('25dp','0dp','0dp','0dp')
+            orientation: 'vertical'
+            id: correctorparamlayout
+            size_hint: (1,2)
+
+        BoxLayout:
+            orientation:'horizontal'
+            padding: '5dp'
+            spacing: '10dp'
+            Label:
+                size_hint: (None,1)
+                text_size: None, None
+                size: self.texture_size
                 text: _("Speicherformat")
             Linediv:
 
@@ -86,6 +114,7 @@
             orientation: 'vertical'
             id: formatorparamlayout
             size_hint: (1,2)
+
         BoxLayout:
             orientation: 'horizontal'
             spacing: '20dp'
