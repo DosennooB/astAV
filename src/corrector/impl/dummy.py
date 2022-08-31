@@ -9,9 +9,10 @@ _ = gettext.gettext
 
 
 class Dummy(ICorrectorTask, ICorrectorGuiParam):
-    task : Stask = []
+    __task : Stask = []
+
     def __init__(self, task : Stask):
-        self.task = task
+        self.__task = task
 
     def correctText(self, textcandidat : PhraseToken) -> PhraseToken:
         return textcandidat

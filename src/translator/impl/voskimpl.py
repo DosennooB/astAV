@@ -23,7 +23,6 @@ class VoskImpl(ITranslatorTask, ITranslatorGuiParam):
         GpuInit()
         self.__model = Model(task.translatorparam.get("modellocation"))
 
-
     def getText(self, audiobuffer: BufferedReader, duration: float) -> PhraseToken:
         phrasetokens = []
         buffer = Buffer(audiobuffer, duration, self.getSamplerate(), self.__task)
