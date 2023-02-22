@@ -15,7 +15,7 @@ class TestSplitInit(TestSplit):
         self.assertEqual(split.maxtime, 7)
         self.assertEqual(split.mintime, 5/6)
         self.assertEqual(split.charpersecond, 20)
-        self.assertEqual(split.timefactor, 1)
+        self.assertEqual(split.timefactor, 2)
         self.assertEqual(getattr(split, '_Split__phrasetokendone'), [])
         self.assertEqual(getattr(split, '_Split__phrasetokentodo'), [])
 
@@ -85,7 +85,7 @@ class TestSplitSplitTextToLines(TestSplit):
 @patch.object(Split, '_Split__segmentHasValidCompletLenght', return_value=True)
 @patch.object(Split, '_Split__segmentHasValidMaxTime', return_value=True)
 @patch.object(Split, '_Split__segmentHasValidMaxLineLenght', return_value=True)
-@patch.object(Split,'_Split__getBiggestTimeGab', return_value=True)
+@patch.object(Split,'_Split__getLastTimeGab', return_value=True)
 class TestSplitSplitTextToSubtitel(TestSplit):
     def test_splitTextToSubtitel_00(self,
                                     mock_timegab : Mock,

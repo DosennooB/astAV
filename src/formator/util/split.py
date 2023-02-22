@@ -9,7 +9,7 @@ class Split:
     maxtime : float = 7.0
     mintime : float = 5/6
     charpersecond : float = 20
-    timefactor : float = 1
+    timefactor : float = 2
     __phrasetokendone = []
     __phrasetokentodo = []
 
@@ -55,7 +55,11 @@ class Split:
             # point 1
             if (not isvalid):
                 isvalid = True
-                newphrases =  self.__getBiggestTimeGab(phrasetowork)
+                newphrases = []
+                if len(self.__phrasetokentodo) == 0:
+                    newphrases = self.__getLastTimeGab(phrasetowork)
+                else:
+                    newphrases =  self.__getBiggestTimeGab(phrasetowork)
                 phrasetowork = newphrases[0]
                 if(len(newphrases) == 2):
                     self.__phrasetokentodo.insert(0, newphrases[1])
@@ -84,6 +88,34 @@ class Split:
                 self.__phrasetokentodo.insert(0, phrasetowork)
         return self.__phrasetokendone
 
+    def __getLastTimeGab(self, textcandidate: PhraseToken) -> [PhraseToken]:
+        charlist = textcandidate.chartokenlist[:self.maxcompletlenght]
+        phraselenght = charlist[-1].endtime - textcandidate.starttime
+        timegabvalue = 0
+        timegabpos = -1
+
+        for num, chart in enumerate(charlist, start=0):
+            chart : CharToken
+            if(chart.char == " " or chart.char == "\n"):
+                chartimelenght = chart.endtime - chart.starttime
+                phrasestarttocharstart = chart.starttime - textcandidate.starttime
+
+                liniarfactor = ((phrasestarttocharstart/phraselenght)+0.5) * (self.timefactor + 1) * chartimelenght
+
+                staticfactor = ((phrasestarttocharstart/ phraselenght)+0.5) /100
+
+                newtimegabvalue = liniarfactor + staticfactor
+
+                if(newtimegabvalue > timegabvalue):
+                    timegabvalue = newtimegabvalue
+                    timegabpos = num
+        if(timegabpos == -1):
+            if(len(textcandidate.getText()) > self.maxlinelenght):
+                timegabpos = self.maxlinelenght
+            else:
+                timegabpos = int(len(textcandidate.getText())/2)
+        return textcandidate.splitAtPos(timegabpos)
+
     def __getBiggestTimeGab(self, textcandidate : PhraseToken) -> [PhraseToken]:
         charlist = textcandidate.chartokenlist
         phraselenght = textcandidate.endtime - textcandidate.starttime
@@ -92,10 +124,10 @@ class Split:
         for num, chart in enumerate(charlist, start=0):
             chart : CharToken
             if(chart.char == " " or chart.char == "\n"):
-                charlenght = chart.endtime - chart.starttime
+                chartimelenght = chart.endtime - chart.starttime
                 phrasestarttocharstart = chart.starttime - textcandidate.starttime
 
-                liniarfactor = ((-((phrasestarttocharstart / phraselenght) - 0.5)**2 + 0.5) * self.timefactor + 1) * charlenght
+                liniarfactor = ((-((phrasestarttocharstart / phraselenght) - 0.5)**2 + 0.5) * self.timefactor + 1) * chartimelenght
 
                 staticfactor = (-((phrasestarttocharstart / phraselenght) - 0.5)**2 + 0.5) * self.timefactor / 100
 
