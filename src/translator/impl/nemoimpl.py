@@ -11,6 +11,7 @@ from src.boundary.phrasetoken import PhraseToken
 from src.translator.util.buffer import Buffer
 from src.boundary.chartoken import CharToken
 import nemo.collections.asr as nemo_asr
+from omegaconf import OmegaConf, open_dict
 
 
 import gettext
@@ -23,7 +24,12 @@ class NemoImpl(ITranslatorTask, ITranslatorGuiParam):
     __asr_model = []
 
     def __init__(self, task: Stask):
-        self.__asr_model = nemo_asr.models.EncDecCTCModel.restore_from(task.translatorparam.get("modellocation"))
+        asr_model_subword  =nemo_asr.models.EncDecCTCModel.restore_from(task.translatorparam.get("modellocation"))
+        decoding_cfg = asr_model_subword.cfg.decoding
+        decoding_cfg.preserve_alignments = True
+        decoding_cfg.compute_timestamps = True
+        asr_model_subword.change_decoding_strategy(decoding_cfg)
+        self.__asr_model = asr_model_subword
         self.__task = task
 
 
@@ -49,54 +55,33 @@ class NemoImpl(ITranslatorTask, ITranslatorGuiParam):
         phrasetokens = []
 
         r = self.__asr_model.transcribe(paths2audio_files=[wavfilename], return_hypotheses=True)[0]
-        transcript = r.text
-        alignments = r.alignments
+        wordlist = r.timestep["word"]
         tempdir.cleanup()
 
-        # https://github.com/NVIDIA/NeMo/blob/v1.0.2/tutorials/asr/Offline_ASR.ipynb
-        # 20ms is duration of a timestep at output of the model
-        time_stride = 0.02
+        # 40ms is duration of a timestep at output of the Conformer
+        time_stride = 4 * self.__asr_model.cfg.preprocessor.window_stride
+        if "quartznet" in self.__task.translatorparam.get("modellocation"):
+            time_stride = 2 * self.__asr_model.cfg.preprocessor.window_stride
+        if "citrinet" in self.__task.translatorparam.get("modellocation"):
+            time_stride = 8 * self.__asr_model.cfg.preprocessor.window_stride
 
-        # get timestamps for space symbols
-        spaces = []
+        offset = -0.150
 
-        state = ''
-        idx_state = 0
+        phrasetokenlist = []
+        for stamp in wordlist:
+            start = stamp['start_offset'] * time_stride + offset
+            end = stamp['end_offset'] * time_stride +offset
+            word = stamp['word']
+            if word == "" or word == ' ':
+                word = " "
+            if end- start > 4:
+                phrasetokenlist.append(self.__wordToPhrase(word,start,start+4))
+            else:
+                phrasetokenlist.append(self.__wordToPhrase(word,start,end))
 
-        if alignments[0] == 0:
-            state = 'space'
-
-        for idx in range(1, len(alignments)):
-            current_char_idx = alignments[idx]
-
-            if state == 'space' and current_char_idx != 0 and current_char_idx != 28:
-                spaces.append([idx_state, idx - 1])
-                state = ''
-            if state == '':
-                if current_char_idx == 0:
-                    state = 'space'
-                    idx_state = idx
-
-        if state == 'space':
-            spaces.append([idx_state, len(alignments) - 1])
-
-        # calibration offset for timestamps: 180 ms
-        offset = -0.18
-
-        # split the transcript into words
-        words = transcript.split()
-
-        # cut words
-        pos_prev = 0
-        for j, spot in enumerate(spaces):
-            pos_end = offset + spot[0] * time_stride
-            phraseword = self.__wordToPhrase(words[j], pos_prev, pos_end)
-            phrasetokens.append(phraseword)
-            pos_prev = offset + spot[1] * time_stride
-        phraseword = self.__wordToPhrase(words[-1], pos_prev, duration)
-        phrasetokens.append(phraseword)
-        return PhraseToken(phrasetokens)
-
+        phrase = PhraseToken(phrasetokenlist)
+        del self.__asr_model
+        return phrase
     def __wordToPhrase(self, word: str, start: float, end: float) -> PhraseToken:
         charlist = []
         lenght = len(word)
