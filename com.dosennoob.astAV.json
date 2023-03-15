@@ -1,0 +1,191 @@
+{
+  "app-id": "org.doosennoob.astAV",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "43",
+  "sdk": "org.gnome.Sdk",
+  "command": "astAV.sh",
+  "finish-args": [
+    "--share=network",
+    "--share=ipc",
+    "--socket=x11",
+    "--socket=wayland",
+    "--filesystem=host",
+    "--device=dri"
+  ],
+
+  "modules": [
+    {
+      "name" : "python_env",
+      "sources": [
+        {
+          "type" : "archive",
+          "url": "https://www.python.org/ftp/python/3.8.16/Python-3.8.16.tar.xz",
+          "sha256": "d85dbb3774132473d8081dcb158f34a10ccad7a90b96c7e50ea4bb61f5ce4562"
+        }
+      ]
+    },
+    {
+      "name": "tkinter",
+      "buildsystem": "simple",
+      "build-options": {
+        "build-args" : [
+          "--share=network"
+        ]
+      },
+      "build-commands": [
+        "pip3 install --prefix=${FLATPAK_DEST} ."
+      ],
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/iwalton3/tkinter-standalone",
+          "commit": "2301112d142ebaf7532b25600c77d1a2edc9ef04"
+        }
+      ],
+      "modules": [
+        {
+          "name": "tcl",
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://sourceforge.net/projects/tcl/files/Tcl/8.6.11/tcl8.6.11-src.tar.gz",
+              "sha256": "8c0486668586672c5693d7d95817cb05a18c5ecca2f40e2836b9578064088258"
+            }
+          ],
+          "subdir": "unix",
+          "post-install": [
+            "chmod +w /app/lib/libtcl8.6.so"
+          ]
+        },
+        {
+          "name": "tk",
+          "sources": [
+            {
+              "type": "archive",
+              "url": "https://sourceforge.net/projects/tcl/files/Tcl/8.6.11/tk8.6.11-src.tar.gz",
+              "sha256": "5228a8187a7f70fa0791ef0f975270f068ba9557f57456f51eb02d9d4ea31282"
+            }
+          ],
+          "subdir": "unix",
+          "post-install": [
+            "chmod +w /app/lib/libtk8.6.so"
+          ]
+        }
+      ]
+    },
+    {
+      "name" : "basic_programm",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install  -D  astAV.py  /app/astAV.py",
+        "install -D astAV.sh /app/bin/astAV.sh"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "astAV.sh"
+        },
+        {
+          "type": "file",
+          "path": "astAV.py"
+        }
+      ]
+    },
+    {
+      "name" : "src_and_ffmpeg",
+      "buildsystem" : "simple",
+      "build-commands": [
+        "install -D ffmpeg /app/ffmpeg",
+        "install -D ffprobe /app/ffprobe",
+        "cp -r src/ /app/src"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": "src/",
+          "dest": "src/"
+        },
+        {
+          "type": "file",
+          "path": "ffmpeg"
+        },
+        {
+          "type": "file",
+          "path": "ffprobe"
+        }
+      ]
+    },
+    {
+      "name" : "python_dep",
+      "buildsystem" : "simple",
+      "build-options": {
+        "build-args" : [
+          "--share=network"
+        ]
+      },
+      "build-commands": [
+        "pip3 install Kivy==2.1.0",
+        "pip3 install ffmpeg-python==0.2.0",
+        "pip3 install numpy==1.23.0",
+        "pip3 install setuptools==59.5.0",
+        "pip3 install onnx",
+        "pip3 install python-dateutil",
+        "pip3 install scikit-learn",
+        "pip3 install tensorboard",
+        "pip3 install text-unidecode",
+        "pip3 install torch",
+        "pip3 install tqdm>=4.41.0",
+        "pip3 install wget",
+        "pip3 install wrapt",
+        "pip3 install braceexpand",
+        "pip3 install editdistance",
+        "pip3 install g2p-en",
+        "pip3 install inflect",
+        "pip3 install jiwer",
+        "pip3 install librosa>=0.9.0",
+        "pip3 install marshmallow",
+        "pip3 install matplotlib",
+        "pip3 install packaging",
+        "pip3 install pyannote-core",
+        "pip3 install pyannote-metrics",
+        "pip3 install scipy",
+        "pip3 install pandas",
+        "pip3 install sacremoses>=0.0.43",
+        "pip3 install sentencepiece==0.1.97",
+        "pip3 install youtokentome>=1.0.5",
+        "pip3 install hydra-core==1.2.0",
+        "pip3 install omegaconf==2.2.3",
+        "pip3 install pytorch-lightning>=1.9.2",
+        "pip3 install pyyaml==5.4.1",
+        "pip3 install torchmetrics>=0.11.0",
+        "pip3 install transformers>=4.0.1",
+        "pip3 install wandb",
+        "pip3 install webdataset==0.1.62",
+        "pip3 install einops",
+        "pip3 install faiss-cpu",
+        "pip3 install fasttext",
+        "pip3 install flask-restful",
+        "pip3 install ftfy",
+        "pip3 install gdown",
+        "pip3 install gradio",
+        "pip3 install h5py",
+        "pip3 install ijson",
+        "pip3 install inflect",
+        "pip3 install jieba",
+        "pip3 install matplotlib==3.7.0",
+        "pip3 install nltk>=3.6.5",
+        "pip3 install opencc",
+        "pip3 install pangu",
+        "pip3 install rapidfuzz",
+        "pip3 install sacrebleu",
+        "pip3 install sentence-transformers",
+        "pip3 install vosk",
+        "pip3 install nemo-toolkit==1.15.0",
+        "pip3 install ipython==8.10.0",
+        "pip3 install lightning-lite==1.8.6",
+        "pip3 install ipadic==1.0.0",
+        "pip3 install mecab-python3==1.0.6"
+      ]
+    }
+  ]
+}
