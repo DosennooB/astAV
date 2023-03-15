@@ -68,12 +68,12 @@ class PhraseToken:
 
 
     def splitAtPos(self, pos : int):
-        firslist = self.chartokenlist[:pos]
-        while(firslist[-1].char == " " or firslist[-1].char == "\n"):
-            firslist.pop()
-        while (firslist[0].char == " " or firslist[0].char == "\n"):
-            firslist.pop(0)
-        firstphrase = PhraseToken(firslist)
+        firstlist = self.chartokenlist[:pos]
+        while(firstlist[-1].char == " " or firstlist[-1].char == "\n"):
+            firstlist.pop()
+        while (firstlist[0].char == " " or firstlist[0].char == "\n"):
+            firstlist.pop(0)
+        firstphrase = PhraseToken(firstlist)
 
         lastlist = self.chartokenlist[pos:]
         if(len(lastlist) > 0):

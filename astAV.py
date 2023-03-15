@@ -61,5 +61,5 @@ class test:
         )
         Scheduler.insertTask(task)
         Scheduler.startTranscription()
-
-astAVGui().run()
+if __name__ == "__main__":
+    astAVGui().run()
