@@ -1,5 +1,5 @@
 {
-  "app-id": "org.doosennoob.astAV",
+  "app-id": "org.dosennoob.astAV",
   "runtime": "org.gnome.Platform",
   "runtime-version": "43",
   "sdk": "org.gnome.Sdk",
@@ -77,18 +77,30 @@
       "name" : "basic_programm",
       "buildsystem": "simple",
       "build-commands": [
-        "install  -D  astAV.py  /app/astAV.py",
-        "install -D astAV.sh /app/bin/astAV.sh"
+        "install -D astAV.py /app/astAV.py",
+        "install -D astAV.sh /app/bin/astAV.sh",
+        "install -D org.dosennoob.astAV.png /app/share/icons/hicolor/128x128/apps/org.dosennoob.astAV.png",
+        "install -D org.dosennoob.astAV.desktop ${FLATPAK_DEST}/share/applications/org.dosennoob.astAV.desktop"
       ],
       "sources": [
+        {
+          "type": "file",
+          "path": "astAV.py"
+        },
         {
           "type": "file",
           "path": "astAV.sh"
         },
         {
           "type": "file",
-          "path": "astAV.py"
+          "path": "org.dosennoob.astAV.png"
+        },
+        {
+          "type": "file",
+          "path": "org.dosennoob.astAV.desktop"
         }
+      ],
+      "post-install": [
       ]
     },
     {
@@ -133,7 +145,9 @@
         "pip3 install scikit-learn",
         "pip3 install tensorboard",
         "pip3 install text-unidecode",
-        "pip3 install torch",
+        "pip3 install torch==1.12.1",
+        "pip3 install torchvision==0.13.1",
+        "pip3 install torchaudio==0.12.1",
         "pip3 install tqdm>=4.41.0",
         "pip3 install wget",
         "pip3 install wrapt",
@@ -155,7 +169,7 @@
         "pip3 install youtokentome>=1.0.5",
         "pip3 install hydra-core==1.2.0",
         "pip3 install omegaconf==2.2.3",
-        "pip3 install pytorch-lightning>=1.9.2",
+        "pip3 install pytorch-lightning==1.9.4",
         "pip3 install pyyaml==5.4.1",
         "pip3 install torchmetrics>=0.11.0",
         "pip3 install transformers>=4.0.1",
@@ -180,7 +194,7 @@
         "pip3 install sacrebleu",
         "pip3 install sentence-transformers",
         "pip3 install vosk",
-        "pip3 install nemo-toolkit==1.15.0",
+        "pip3 install nemo-toolkit==1.16.0",
         "pip3 install ipython==8.10.0",
         "pip3 install lightning-lite==1.8.6",
         "pip3 install ipadic==1.0.0",

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from src.boundary.stask import Stask
 from src.formator.impl import Txt, Srt
 from src.gui.gui import astAVGui

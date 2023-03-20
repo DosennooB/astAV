@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=astAV
+Exec=astAV.sh
+Type=Application
+Icon=org.dosennoob.astAV
+Categories=GNOME;GTK;AudioVideo;
