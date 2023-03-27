@@ -4,9 +4,14 @@
     orientation: 'horizontal'
     size_hint: (1, None)
     height: 100
+    padding: ('5pd', '0pd', '0pd', '0dp')
     Label:
         id: filename
         text: _('Dateiname')
+        size_hint: (2.0,1)
+        shorten: True
+        text_size: self.size
+        valign: 'middle'
     Label:
         id: translator
         text: _('Translator')

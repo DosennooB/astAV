@@ -6,14 +6,29 @@
         orientation: 'vertical'
         Label:
             text: _('Aufgaben in Bearbeitung')
-        BoxLayout:
-            id: renderlist
-            orientation: 'vertical'
+            font_size: '32dp'
+            size_hint: (1,0.2)
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            BoxLayout:
+                id: renderlist
+                orientation: 'vertical'
+                padding: '5dp'
+                spacing: '5dp'
+                size_hint_y: None
+                height: self.minimum_height
         BoxLayout:
             orientation: 'horizontal'
+            spacing: '20dp'
+            padding: '5dp'
+            size_hint: (1, None)
+            height: '70dp'
             Button:
                 id: cancel
                 text: _('Verarbeitung stoppen')
+                font_size: '25dp'
             Button:
                 id: back
                 text: _('Zurück zum Hauptbildschirm')
+                font_size: '25dp'

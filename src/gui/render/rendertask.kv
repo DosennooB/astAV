@@ -2,15 +2,25 @@
 
 <RenderTask>:
     orientation: 'horizontal'
+    size_hint: (1, None)
+    height: 100
+    padding: ('10pd', '0pd', '0pd', '0dp')
     Label:
         id: filename
         text: _('Dateiname')
+        size_hint: (2.0,1)
+        shorten: True
+        text_size: self.size
+        valign: 'middle'
     Label:
         id: step
         text: _('Schritt')
+        size_hint: (1.0,1)
     ProgressBar:
         id: progress
+        size_hint: (1.0,1)
         value: 0
     Label:
         id: status
         text: _('Warte')
+        size_hint: (1.0,1)
