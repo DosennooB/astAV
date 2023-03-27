@@ -1,3 +1,4 @@
+import importlib
 from io import BufferedReader
 import tempfile
 import wave
@@ -10,7 +11,7 @@ from src.boundary.stask import Stask
 from src.boundary.phrasetoken import PhraseToken
 from src.translator.util.buffer import Buffer
 from src.boundary.chartoken import CharToken
-import nemo.collections.asr as nemo_asr
+#import nemo.collections.asr as nemo_asr
 from omegaconf import OmegaConf, open_dict
 
 
@@ -24,6 +25,8 @@ class NemoImpl(ITranslatorTask, ITranslatorGuiParam):
     __asr_model = []
 
     def __init__(self, task: Stask):
+        #global nemo_asr
+        nemo_asr = importlib.import_module('nemo.collections.asr')
         asr_model_subword  =nemo_asr.models.EncDecCTCModel.restore_from(task.translatorparam.get("modellocation"))
         decoding_cfg = asr_model_subword.cfg.decoding
         decoding_cfg.preserve_alignments = True

@@ -20,7 +20,6 @@ class VoskImpl(ITranslatorTask, ITranslatorGuiParam):
 
     def __init__(self, task: Stask):
         self.__task = task
-        GpuInit()
         self.__model = Model(task.translatorparam.get("modellocation"))
 
     def getText(self, audiobuffer: BufferedReader, duration: float) -> PhraseToken:
