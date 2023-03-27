@@ -1,19 +1,23 @@
+import importlib
+
 from src.boundary.guiparam.guiparam import GuiParam, GuiParamFile
 from src.boundary.phrasetoken import PhraseToken
 from src.boundary.stask import Stask
 from src.corrector.service.icorrectorguiparam import ICorrectorGuiParam
 from src.corrector.service.icorrectortask import ICorrectorTask
-from nemo.collections.nlp.models import PunctuationCapitalizationModel
-
+#import nemo.collections.nlp.models as Models
 import gettext
 
 _ = gettext.gettext
 
 class NemoPC(ICorrectorTask, ICorrectorGuiParam):
-    __task : Stask = []
-    __model : PunctuationCapitalizationModel =[]
+    __task: Stask = []
+    __model = []
 
     def __init__(self, task : Stask):
+        global PunctuationCapitalizationModel
+        Model = importlib.import_module('nemo.collections.nlp.models')
+        PunctuationCapitalizationModel = Model.PunctuationCapitalizationModel
         self.__task = task
         self.__model = PunctuationCapitalizationModel.restore_from(task.correctorparam.get("modellocation"))
 
