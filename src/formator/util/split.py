@@ -102,7 +102,12 @@ class Split:
 
                 liniarfactor = ((phrasestarttocharstart/phraselenght)+0.5) * (self.timefactor + 1) * chartimelenght
 
-                staticfactor = ((phrasestarttocharstart/ phraselenght)+0.5) /100
+                staticfactor = ((phrasestarttocharstart / phraselenght) + 0.5) / 1000
+
+                if num + 1 < len(charlist):
+                    char_next: CharToken = charlist[num+1]
+                    char_time = char_next.endtime - char_next.starttime
+                    staticfactor = ((phrasestarttocharstart/phraselenght) + 0.5) * char_time / 5
 
                 newtimegabvalue = liniarfactor + staticfactor
 
@@ -129,7 +134,12 @@ class Split:
 
                 liniarfactor = ((-((phrasestarttocharstart / phraselenght) - 0.5)**2 + 0.5) * self.timefactor + 1) * chartimelenght
 
-                staticfactor = (-((phrasestarttocharstart / phraselenght) - 0.5)**2 + 0.5) * self.timefactor / 100
+                staticfactor = (-((phrasestarttocharstart / phraselenght) - 0.5)**2 + 0.5) * self.timefactor / 1000
+
+                if num + 1 < len(charlist):
+                    char_next: CharToken = charlist[num+1]
+                    char_time = char_next.endtime - char_next.starttime
+                    staticfactor = ((phrasestarttocharstart/phraselenght) + 0.5) * char_time / 5
 
                 newtimegabvalue = liniarfactor + staticfactor
 
