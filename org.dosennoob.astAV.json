@@ -79,7 +79,7 @@
       "build-commands": [
         "install -D astAV.py /app/astAV.py",
         "install -D astAV.sh /app/bin/astAV.sh",
-        "install -D org.dosennoob.astAV.png /app/share/icons/hicolor/128x128/apps/org.dosennoob.astAV.png",
+        "install -D astAV_logo_color256x256.png /app/share/icons/hicolor/256x256/apps/org.dosennoob.astAV.png",
         "install -D org.dosennoob.astAV.desktop ${FLATPAK_DEST}/share/applications/org.dosennoob.astAV.desktop"
       ],
       "sources": [
@@ -93,7 +93,7 @@
         },
         {
           "type": "file",
-          "path": "org.dosennoob.astAV.png"
+          "path": "icons/astAV_logo_color256x256.png"
         },
         {
           "type": "file",
