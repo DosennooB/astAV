@@ -17,7 +17,7 @@ The versions of the program have been tested under Windows 10 and Linux (Fedora 
 
 ### Speech recognition
 Speech models from [Vosk](https://alphacephei.com/vosk/models) or 
-[DeepSpeech](https://discourse.mozilla.org/t/links-to-pretrained-models/62688) are required to use speech recognition. 
+[NeMo](https://catalog.ngc.nvidia.com/orgs/nvidia/collections/nemo_asr/entities) are required to use speech recognition. 
 These can be downloaded free of charge.
 In addition to speech recognition, the program also asks for the path to the downloaded model.
 
@@ -52,8 +52,10 @@ These licences are all compatible with the licence used.
 - [ffmpeg-python](https://github.com/kkroening/ffmpeg-python)
 
 The Windows application was compiled with [PyInstaller](https://pyinstaller.org/).
-The Linux variant was created with Flatpak.
+The Linux variant was created with Flatpak. 
 
 ## Documentation
 
 A manual as well as a guide for implementing other speech recognition frameworks and subtitle formats are planned.
+
+## Next Releas 
