@@ -12,7 +12,20 @@
     "--filesystem=host",
     "--device=dri"
   ],
-
+  "cleanup": [
+    "*.la",
+    "*.a",
+    "/include",
+    "/lib/cmake",
+    "/lib/pkgconfig",
+    "/lib/debug",
+    "/mkspecs",
+    "/share/pkgconfig",
+    "/share/aclocal",
+    "/share/info",
+    "/man",
+    "/share/man"
+  ],
   "modules": [
     {
       "name" : "python_env",
@@ -145,9 +158,7 @@
         "pip3 install scikit-learn",
         "pip3 install tensorboard",
         "pip3 install text-unidecode",
-        "pip3 install torch==1.12.1",
-        "pip3 install torchvision==0.13.1",
-        "pip3 install torchaudio==0.12.1",
+        "pip3 install torch==2.0.0 torchvision==0.15.1 torchaudio==2.0.1",
         "pip3 install tqdm>=4.41.0",
         "pip3 install wget",
         "pip3 install wrapt",
@@ -158,7 +169,7 @@
         "pip3 install jiwer",
         "pip3 install librosa>=0.9.0",
         "pip3 install marshmallow",
-        "pip3 install matplotlib",
+        "pip3 install matplotlib==3.7.0",
         "pip3 install packaging",
         "pip3 install pyannote-core",
         "pip3 install pyannote-metrics",
@@ -186,7 +197,6 @@
         "pip3 install ijson",
         "pip3 install inflect",
         "pip3 install jieba",
-        "pip3 install matplotlib==3.7.0",
         "pip3 install nltk>=3.6.5",
         "pip3 install opencc",
         "pip3 install pangu",

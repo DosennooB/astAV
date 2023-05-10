@@ -5,7 +5,7 @@ def hook(hook_api):
     packages = ['vosk','torch','image','torchvision','torchaudio','nemo','pytorch_lightning',
                 'rich','tqdm','regex','requests','transformers','packaging',
                 'filelock','numpy','tokenizers','lightning_fabric','lightning_utilities','scipy',
-                'librosa','sklearn', 'ipadic']
+                'librosa','sklearn', 'ipadic', 'whisper']
     for package in packages:
         datas, binaries, hiddenimports = collect_all(package)
         #yprint(datas)

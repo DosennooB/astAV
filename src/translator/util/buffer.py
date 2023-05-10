@@ -48,6 +48,15 @@ class Buffer:
         self.__updateProgress()
         return chunk
 
+    def getAudioNp30(self) -> np.numarray:
+        if(self.__task.getStatus() == StatusTyp.CANCELD):
+            chunk = np.frombuffer(b'', np.float32)
+        else:
+            chunk: np = np.frombuffer(self.__audiobuffer.read(self.__samplerate * 2 * 30), np.int16).flatten().astype(np.float32) / 32768.0
+            np.pad(chunk, (0, (self.__samplerate * 30) - chunk.size), 'constant')
+        self.__offset += 30
+        self.__updateProgress()
+        return chunk
     def __updateProgress(self):
         self.__task.setProgress((self.__offset / self.__duration))
 
