@@ -2,6 +2,7 @@ import importlib
 from io import BufferedReader
 import tempfile
 import wave
+import torch
 
 from src.boundary.guiparam.guiparam import GuiParam, GuiParamFile
 from src.boundary.statustype import StatusTyp
@@ -25,14 +26,15 @@ class NemoImpl(ITranslatorTask, ITranslatorGuiParam):
     __asr_model = []
 
     def __init__(self, task: Stask):
-        #global nemo_asr
+        device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        print("running on "+device)
         nemo_asr = importlib.import_module('nemo.collections.asr')
         asr_model_subword  =nemo_asr.models.EncDecCTCModel.restore_from(task.translatorparam.get("modellocation"))
         decoding_cfg = asr_model_subword.cfg.decoding
         decoding_cfg.preserve_alignments = True
         decoding_cfg.compute_timestamps = True
         asr_model_subword.change_decoding_strategy(decoding_cfg)
-        self.__asr_model = asr_model_subword
+        self.__asr_model = asr_model_subword.to(device)
         self.__task = task
 
 
