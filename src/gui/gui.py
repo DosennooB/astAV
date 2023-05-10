@@ -1,3 +1,4 @@
+from kivy.config import Config
 from kivy.app import App
 from kivy.uix.screenmanager import Screen, ScreenManager
 from src.gui.main.hauptscreen import HauptScreen
@@ -8,6 +9,7 @@ from kivy.lang import Builder
 
 class astAVGui(App):
     def build(self):
+        Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
         self.icon = 'icons/astAV_logo_color256x256.png'
         Builder.load_file("src/gui/main/hauptscreen.kv")
         Builder.load_file("src/gui/task/taskscreen.kv")
