@@ -27,7 +27,7 @@ class Srt(IFormatorTask, IFormatorGuiParam):
             phraselist = self.__split.splitTextToSubtitelpolicie(textcandidat, splitmode)
 
         path = "".join(self.task.writelocation+"/" + self.task.filename + ".srt")
-        f = open(path, 'w')
+        f = open(path, 'w',encoding='UTF-8')
         for num, phrase in enumerate(phraselist, start=1):
             phrase : PhraseToken
             start = phrase.starttime

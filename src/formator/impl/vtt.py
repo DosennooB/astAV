@@ -25,7 +25,7 @@ class Vtt(IFormatorTask, IFormatorGuiParam):
             phraselist = self.__split.splitTextToSubtitelpolicie(textcandidat, splitmode)
 
         path = "".join(self.task.writelocation+"/" + self.task.filename + ".vtt")
-        f = open(path, 'w')
+        f = open(path, 'w',encoding='UTF-8')
         f.write("WEBVTT\n\n")
         for num, phrase in enumerate(phraselist, start=1):
             phrase : PhraseToken

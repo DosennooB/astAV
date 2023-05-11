@@ -18,7 +18,7 @@ class Txt(IFormatorTask, IFormatorGuiParam):
     def saveText(self, textcandidate: PhraseToken) -> bool:
         textmode = self.task.formatorparam.get("textmode")
         path = "".join(self.task.writelocation +"/"+ self.task.filename + ".txt")
-        f = open(path, 'w')
+        f = open(path, 'w',encoding='UTF-8')
         if (textmode == "oneline"):
             f.write(textcandidate.getText())
         elif (textmode == "char80"):

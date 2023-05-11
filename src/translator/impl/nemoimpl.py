@@ -1,4 +1,4 @@
-import importlib
+
 from io import BufferedReader
 import tempfile
 import wave
@@ -28,7 +28,7 @@ class NemoImpl(ITranslatorTask, ITranslatorGuiParam):
     def __init__(self, task: Stask):
         device = 'cuda' if torch.cuda.is_available() else 'cpu'
         print("running on "+device)
-        nemo_asr = importlib.import_module('nemo.collections.asr')
+        import nemo.collections.asr as nemo_asr
         asr_model_subword  =nemo_asr.models.EncDecCTCModel.restore_from(task.translatorparam.get("modellocation"))
         decoding_cfg = asr_model_subword.cfg.decoding
         decoding_cfg.preserve_alignments = True

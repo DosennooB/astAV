@@ -1,4 +1,4 @@
-import importlib
+
 
 from src.boundary.guiparam.guiparam import GuiParam, GuiParamFile
 from src.boundary.phrasetoken import PhraseToken
@@ -16,8 +16,8 @@ class NemoPC(ICorrectorTask, ICorrectorGuiParam):
 
     def __init__(self, task : Stask):
         global PunctuationCapitalizationModel
-        Model = importlib.import_module('nemo.collections.nlp.models')
-        PunctuationCapitalizationModel = Model.PunctuationCapitalizationModel
+        import nemo.collections.nlp.models as Models
+        PunctuationCapitalizationModel = Models.PunctuationCapitalizationModel
         self.__task = task
         self.__model = PunctuationCapitalizationModel.restore_from(task.correctorparam.get("modellocation"))
 
