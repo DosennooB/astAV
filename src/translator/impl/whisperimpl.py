@@ -51,7 +51,11 @@ class WhisperImpl(ITranslatorTask, ITranslatorGuiParam):
         for transcription_set in transcription:
             for segment in transcription_set["segments"]:
                 for word in segment["words"]:
-                    phrasetokens.append(self.__wordToPhrase(word["word"].strip(),word["start"]+offset_time, word["end"]+offset_time))
+                    if word['end'] - word['start'] < 4:
+                        phrasetokens.append(self.__wordToPhrase(word["word"].strip(),word["start"]+offset_time, word["end"]+offset_time))
+                    else:
+                        phrasetokens.append(self.__wordToPhrase(word["word"].strip(), word["end"] + offset_time-4,
+                                                                word["end"] + offset_time))
             offset_time += 30
         return PhraseToken(phrasetokens)
 
