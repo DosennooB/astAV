@@ -20,7 +20,7 @@ a = Analysis(
                 ('src/gui/render/rendersreen.kv', 'src/gui/render/'),
                 ('src/gui/render/rendertask.kv', 'src/gui/render/'),
                 ('ffmpeg.exe', '.'), ('ffprobe.exe', '.')],
-    hiddenimports=['numpy'],
+    hiddenimports=[],
     hookspath=['hooks'],
     hooksconfig={},
     runtime_hooks=[],
