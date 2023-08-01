@@ -3,7 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 from src.boundary.stask import Stask
 from src.boundary.statustype import StatusTyp
 import gettext
-_ = gettext.gettext
+_ :gettext
 
 class RenderTask(BoxLayout):
     task: Stask = []

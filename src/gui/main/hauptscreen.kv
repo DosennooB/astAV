@@ -1,14 +1,21 @@
-#:import _ gettext.gettext
 #:include src/gui/main/tasktable.kv
 
 
 <HauptScreen>:
     BoxLayout:
         orientation: 'vertical'
-        Label:
-            text: _('Aufgaben')
-            font_size: '32dp'
+        BoxLayout:
+            orientation: 'horizontal'
             size_hint: (1,0.2)
+            Label:
+                text: _('Aufgaben')
+                font_size: '32dp'
+                size_hint: (0.9,1)
+            ActionToggleButton:
+                text: 'Toggle sourcecode'
+                icon: 'icons/einstellungen.png'
+                size_hint: (0.1,1)
+                on_release: app.open_settings()
         ScrollView:
             do_scroll_x: False
             do_scroll_y: True

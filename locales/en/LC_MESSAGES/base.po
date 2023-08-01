@@ -1,0 +1,315 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2023-07-26 14:16+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=cp1252\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: src\corrector\impl\dummy.py:26
+msgid "keins"
+msgstr "None"
+
+#: src\corrector\impl\dummy.py:30
+msgid "enthält keinen Corrector"
+msgstr "Contains no module"
+
+#: src\corrector\impl\nemopc.py:41 src\translator\impl\deepspeechimpl.py:68
+#: src\translator\impl\nemoimpl.py:106
+msgid "KI-Model"
+msgstr "KI-Model"
+
+#: src\corrector\impl\nemopc.py:44
+msgid ""
+"Die Datei in dem sich das KI-Model für Zeichensetzung und Groß- und Kleinschreibung befinget.\n"
+" Das Model muss auf die Sprache angepasst sein."
+msgstr ""
+"The file containing the AI model for punctuation and capitalisation."
+"The model must be adapted to the language."
+#: src\corrector\impl\nemopc.py:49
+msgid "Nemo PC"
+msgstr "Punctuation and Capitalization (nemo)"
+
+#: src\corrector\impl\nemopc.py:53
+msgid "Korrigiert Groß- und Kleinschreibung fügt Punkte hinzu"
+msgstr "Corrects upper and lower case and adds punctuation marks"
+
+#: src\formator\impl\srt.py:59 src\formator\impl\vtt.py:57
+msgid "Trennmodus"
+msgstr "Separation rules"
+
+#: src\formator\impl\srt.py:61 src\formator\impl\vtt.py:59
+msgid ""
+"Gibt an nach welchen Vorgaben die Untertitel getrennt werden sollen. \n"
+" Kann die Vorgaben nicht immer einhalten"
+msgstr ""
+"Specifies how the subtitles are to be separated. \n"
+"Not always possible to comply with."
+
+#: src\formator\impl\srt.py:63 src\formator\impl\vtt.py:61
+msgid "Einzelne Wörter"
+msgstr "Every word"
+
+#: src\formator\impl\srt.py:69
+msgid "srt Datei"
+msgstr "SubRip subtitles (.srt)"
+
+#: src\formator\impl\srt.py:73
+msgid "Schreibt den erkannten Text in STR-Datei. Die Datei kann als Untertitel eingepflegt werden."
+msgstr "Creates subtitles in the Sub Rib Text format."
+
+#: src\formator\impl\txt.py:45
+msgid "Zeilen Modus"
+msgstr "Line break"
+
+#: src\formator\impl\txt.py:47
+msgid "Gibt ob und an welcher Stelle ein zeilenumbruch statt finden soll"
+msgstr "Allows coarse text formatting"
+
+#: src\formator\impl\txt.py:48
+msgid "Eine Zeile"
+msgstr "One row"
+
+#: src\formator\impl\txt.py:49
+msgid "80 Zeichen pro Zeile"
+msgstr "80 characters per line"
+
+#: src\formator\impl\txt.py:50
+msgid "120 Zeichen pro Zeile"
+msgstr "120 characters per line"
+
+#: src\formator\impl\txt.py:55
+msgid "txt Datei"
+msgstr "Text file (.txt)"
+
+#: src\formator\impl\txt.py:59
+msgid "Schreibt den erkannten Text in eine txt-Datei"
+msgstr "Creates a txt file without time information."
+
+#: src\formator\impl\vtt.py:67
+msgid "vtt Datei"
+msgstr "WebVTT subtitles (.vtt)"
+
+#: src\formator\impl\vtt.py:71
+msgid "Schreibt den erkannten Text in vtt-Datei. Die Datei kann als Untertitel eingepflegt werden."
+msgstr "Creates subtitles in WebVTT format."
+
+#: src\formator\util\splitpolicie.py:31
+msgid "Netflix DE"
+msgstr "Netflix DE"
+
+#: src\formator\util\splitpolicie.py:41
+msgid "ARD / ZDF"
+msgstr "ARD / ZDF"
+
+#: src\formator\util\splitpolicie.py:51
+msgid "TH-Koeln"
+msgstr "Technical University-Cologne"
+
+#: src\gui\gui.py:53
+msgid "Sprache"
+msgstr "Language"
+
+#: src\gui\gui.py:55
+msgid "Sprachauswahl"
+msgstr "Language selection"
+
+#: src\gui\main\hauptscreen.kv:12
+msgid "Aufgaben"
+msgstr "Tasks"
+
+#: src\gui\main\hauptscreen.kv:39
+msgid "starte Verarbeitung"
+msgstr "Launch processing"
+
+#: src\gui\main\hauptscreen.kv:43
+msgid "neue Aufgabe"
+msgstr "New task"
+
+#: src\gui\main\hauptscreen.py:24
+msgid "Datei hier ablegen"
+msgstr "Drag video/audio here"
+
+#: src\gui\main\tasktable.kv:10 src\gui\render\rendertask.kv:10
+#: src\gui\task\taskscreen.py:50
+msgid "Dateiname"
+msgstr "File name"
+
+#: src\gui\main\tasktable.kv:17
+msgid "Translator"
+msgstr "Speech recognition"
+
+#: src\gui\main\tasktable.kv:21
+msgid "Formator"
+msgstr "Formator"
+
+#: src\gui\main\tasktable.kv:25
+msgid "bearbeiten"
+msgstr "Edit"
+
+#: src\gui\main\tasktable.kv:29
+msgid "Löschen"
+msgstr "Delete"
+
+#: src\gui\render\rendersreen.kv:8
+msgid "Aufgaben in Bearbeitung"
+msgstr "Status"
+
+#: src\gui\render\rendersreen.kv:29
+msgid "Verarbeitung stoppen"
+msgstr "Stop processing"
+
+#: src\gui\render\rendersreen.kv:33
+msgid "Zurück zum Hauptbildschirm"
+msgstr "Back to main screen"
+
+#: src\gui\render\rendertask.kv:17
+msgid "Schritt"
+msgstr "Step"
+
+#: src\gui\render\rendertask.kv:25
+msgid "Warte"
+msgstr "Pending"
+
+#: src\gui\render\rendertask.py:31
+msgid "warte"
+msgstr "Pending"
+
+#: src\gui\render\rendertask.py:33
+msgid "fertig"
+msgstr "Done"
+
+#: src\gui\render\rendertask.py:35
+msgid "Fehler"
+msgstr "Error"
+
+#: src\gui\render\rendertask.py:37
+msgid "in Arbeit"
+msgstr "In progress"
+
+#: src\gui\render\rendertask.py:39
+msgid "abgebrochen"
+msgstr "Cancelled"
+
+#: src\gui\task\taskscreen.kv:13
+msgid "Aufgabenbearbeitung"
+msgstr "Task processing"
+
+#: src\gui\task\taskscreen.kv:24
+msgid "Datei"
+msgstr "File"
+
+#: src\gui\task\taskscreen.kv:42
+msgid "Spracherkennung"
+msgstr "Speech recognition"
+
+#: src\gui\task\taskscreen.kv:49
+msgid "Translatorauswahl"
+msgstr "Module"
+
+#: src\gui\task\taskscreen.kv:70
+msgid "Überarbeitung (optional)"
+msgstr "Editing (optional)"
+
+#: src\gui\task\taskscreen.kv:77
+msgid "Korrektorauswahl"
+msgstr "Module"
+
+#: src\gui\task\taskscreen.kv:98
+msgid "Speicherformat"
+msgstr "Export"
+
+#: src\gui\task\taskscreen.kv:105
+msgid "Formatorauswahl"
+msgstr "File format"
+
+#: src\gui\task\taskscreen.kv:126
+msgid "Abrechen"
+msgstr "Cancel"
+
+#: src\gui\task\taskscreen.kv:130
+msgid "OK"
+msgstr "Create"
+
+#: src\gui\task\taskscreen.py:32
+msgid "Audio- Videodatei"
+msgstr "Input file"
+
+#: src\gui\task\taskscreen.py:41
+msgid "Speicherort"
+msgstr "Output directory"
+
+#: src\gui\utils\parambox.kv:36
+msgid "Ordner ändern"
+msgstr "Select folder"
+
+#: src\gui\utils\parambox.kv:57
+msgid "Datei ändern"
+msgstr "Select file"
+
+#: src\gui\utils\parambox.py:199
+msgid " max Zeichen "
+msgstr " max chars "
+
+#: src\translator\impl\deepspeechimpl.py:71
+#: src\translator\impl\nemoimpl.py:109
+msgid ""
+"Die Datei in dem sich das KI-Model für eine Sprache befindet.\n"
+" Die Sprache ist abhängig vom KI-Model"
+msgstr ""
+"The file containing the AI model for a language.\n"
+" Language depends on the AI model"
+
+#: src\translator\impl\deepspeechimpl.py:74
+msgid "Scorer-Model Optional"
+msgstr "Scorer Model Optional"
+
+#: src\translator\impl\deepspeechimpl.py:77
+msgid ""
+"Die Datei in dem sich der Scorer für eine Sprache befindet.\n"
+" Kann helfen die Erkennungsrate zu erhöhen"
+msgstr ""
+"The file in with the scorer for a language.\n"
+" Can help to increase the recognition rate."
+
+#: src\translator\impl\deepspeechimpl.py:87
+msgid "Nutzt die DeepSpeech Spracherkennung von Mozilla"
+msgstr "Uses DeepSpeech speech recognition from Mozilla"
+
+#: src\translator\impl\nemoimpl.py:118
+msgid "Die Spracheerkennung von Nvidia"
+msgstr "Speech recognition by Nvidia"
+
+#: src\translator\impl\voskimpl.py:61
+msgid "KI-Model Ordner"
+msgstr "AI Model Folder"
+
+#: src\translator\impl\voskimpl.py:64
+msgid ""
+"Der Ordner in dem sich das KI-Model für eine Sprache befindet.\n"
+" Die Sprache ist abhängig vom KI-Model"
+msgstr ""
+"The folder in which the AI model for a language is located.\n"
+" Language is dependent on the AI model"
+
+#: src\translator\impl\voskimpl.py:73
+msgid "Nutzt die Vosk Spracherkennung für die Texterkennung"
+msgstr "Language recognition by Alpha Cephei"
+
+#: src\translator\impl\whisperimpl.py:79
+msgid "KI Model"
+msgstr "AI model"
+
+#: src\translator\impl\whisperimpl.py:95
+msgid "Nutzt die open-ai Spracherkennung für die Texterkennung"
+msgstr "Speech recognition by OpenAI"
+

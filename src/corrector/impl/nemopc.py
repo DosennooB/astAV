@@ -8,7 +8,7 @@ from src.corrector.service.icorrectortask import ICorrectorTask
 #import nemo.collections.nlp.models as Models
 import gettext
 
-_ = gettext.gettext
+_ :gettext
 
 class NemoPC(ICorrectorTask, ICorrectorGuiParam):
     __task: Stask = []
@@ -41,8 +41,7 @@ class NemoPC(ICorrectorTask, ICorrectorGuiParam):
         modelparam.displayname = _("KI-Model")
         modelparam.name = "modellocation"
         modelparam.defvalue = ""
-        modelparam.mouesover = _("Die Datei in dem sich das KI-Model für Zeichensetzung und Groß- und Kleinschreibung befinget." +
-                                 "Das Model muss auf die Sprache angepasst sein.")
+        modelparam.mouesover = _("Die Datei in dem sich das KI-Model für Zeichensetzung und Groß- und Kleinschreibung befinget.\n Das Model muss auf die Sprache angepasst sein.")
         return [modelparam]
 
     @staticmethod

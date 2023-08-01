@@ -13,7 +13,7 @@ from src.boundary.stask import Stask
 import os
 import gettext
 
-_ = gettext.gettext
+_ :gettext
 
 
 class HauptScreen(Screen):

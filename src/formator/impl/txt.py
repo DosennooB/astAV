@@ -6,7 +6,7 @@ from src.boundary.phrasetoken import PhraseToken
 from src.boundary.stask import Stask
 import gettext
 
-_ = gettext.gettext
+_ :gettext
 
 
 class Txt(IFormatorTask, IFormatorGuiParam):

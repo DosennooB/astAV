@@ -11,7 +11,7 @@ from vosk import Model, KaldiRecognizer, GpuInit
 import json
 import gettext
 
-_ = gettext.gettext
+_ :gettext
 
 
 class VoskImpl(ITranslatorTask, ITranslatorGuiParam):
@@ -61,13 +61,12 @@ class VoskImpl(ITranslatorTask, ITranslatorGuiParam):
         modelparam.displayname = _("KI-Model Ordner")
         modelparam.name = "modellocation"
         modelparam.defvalue = ""
-        modelparam.mouesover = _("Der Ordner in dem sich das KI-Model für eine Sprache befindet. " +
-                                 "Die Sprache ist abhängig vom KI-Model")
+        modelparam.mouesover = _("Der Ordner in dem sich das KI-Model für eine Sprache befindet.\n Die Sprache ist abhängig vom KI-Model")
         return [modelparam]
 
     @staticmethod
     def getName() -> str:
-        return _("Vosk")
+        return "Vosk"
 
     @staticmethod
     def getDescription() -> str:

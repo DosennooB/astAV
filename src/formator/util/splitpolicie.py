@@ -1,5 +1,5 @@
 import gettext
-_ = gettext.gettext
+_ :gettext
 
 class Splitpolicie(object):
     name: str

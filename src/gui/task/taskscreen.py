@@ -16,8 +16,8 @@ from src.corrector.impl import *
 from src.corrector.service.icorrectorguiparam import ICorrectorGuiParam
 from src.backend.impl.scheduler import Scheduler
 from src.boundary.stask import Stask
-import gettext
-_ = gettext.gettext
+
+_ :gettext
 
 class Linediv(Label):
     pass

@@ -17,6 +17,7 @@ class Stask:
     formator = []
     formatorparam = {}
     textcandidate : PhraseToken = []
+    presetname: str = []
 
 
     def __init__(self, *args, **kwargs):
@@ -32,6 +33,7 @@ class Stask:
         self.formator = kwargs.get("formator", [])
         self.formatorparam = kwargs.get("formatorparam", {})
         self.textcandidate = kwargs.get("textcandidate", [])
+        self.presetname = kwargs.get("presetname", [])
 
     def setProgress(self, progress : float):
         if(progress < 0 or progress > 1):

@@ -5,7 +5,7 @@ from src.corrector.service.icorrectorguiparam import ICorrectorGuiParam
 from src.corrector.service.icorrectortask import ICorrectorTask
 import gettext
 
-_ = gettext.gettext
+_ :gettext
 
 
 class Dummy(ICorrectorTask, ICorrectorGuiParam):

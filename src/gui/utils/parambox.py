@@ -1,13 +1,16 @@
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.popup import Popup
 from kivy.uix.slider import Slider
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.textinput import TextInput
+from kivy_garden.filebrowser import FileBrowser
 
 from src.boundary.guiparam.guiparam import *
-from tkinter import Tk
-from tkinter.filedialog import askopenfilenames, askdirectory, askopenfilename
 import os
+from os.path import join, isdir
 import gettext
-_ = gettext.gettext
+_ :gettext
 
 class ParamBox(BoxLayout):
     param : GuiParam = None
@@ -51,11 +54,35 @@ class ParamDirBox(ParamBox):
 
     def onValueChange(self, instance):
         value_label = self.ids["valueparameter"]
-        Tk().withdraw()
-        dirname = askdirectory(initialdir=value_label.text)
-        if (dirname != ""):
-            value_label.text = dirname
-            self.selectvalue = dirname
+
+        dirname = ''
+        if(os.path.dirname(value_label.text)!=''):
+            dirname = os.path.dirname(value_label.text)
+        else:
+            dirname = os.path.expanduser('~')
+
+        dir_browser = FileBrowser(path=dirname, filters=[self.is_dir], dirselect=True)
+        self._popup = Popup(title="Select Directory", content=dir_browser,
+                            size_hint=(0.9, 0.9))
+        dir_browser.bind(
+            on_success=self.select,
+            on_canceled=self.dismiss_popup)
+        self._popup.open()
+
+    def is_dir(self,directory, filename):
+        return isdir(join(directory, filename))
+    def dismiss_popup(self, instance):
+        self._popup.dismiss()
+
+    def select(self, inctance):
+        path = inctance.path
+        value_label = self.ids["valueparameter"]
+        filename = inctance.selection
+        if(len(filename)>0):
+            filename = join(path, filename[0])
+            value_label.text = filename
+            self.selectvalue = filename
+        self.dismiss_popup(self)
 
 class ParamFileBox(ParamBox):
     def setup(self, param: GuiParamFile):
@@ -73,16 +100,34 @@ class ParamFileBox(ParamBox):
 
     def onValueChange(self, instance):
         value_label = self.ids["valueparameter"]
-        dirname = ""
-        try:
+
+        dirname = ''
+        if(os.path.dirname(value_label.text)!=''):
             dirname = os.path.dirname(value_label.text)
-        except:
-            pass
-        Tk().withdraw()
-        filename = askopenfilename(initialdir=dirname)
-        if(filename != ""):
+        else:
+            dirname = os.path.expanduser('~')
+
+        dir_browser = FileBrowser(path=dirname)
+        self._popup = Popup(title="Select File", content=dir_browser,
+                            size_hint=(0.9, 0.9))
+        dir_browser.bind(
+            on_success=self.select,
+            on_canceled=self.dismiss_popup)
+        self._popup.open()
+
+
+    def dismiss_popup(self, instance):
+        self._popup.dismiss()
+
+    def select(self, inctance):
+        path = inctance.path
+        value_label = self.ids["valueparameter"]
+        filename = inctance.selection
+        if(len(filename)>0):
+            filename = os.path.join(path, filename[0])
             value_label.text = filename
             self.selectvalue = filename
+        self.dismiss_popup(self)
 
 class ParamSpinnerBox(ParamBox):
     def setup(self, param: GuiParamSpinner):

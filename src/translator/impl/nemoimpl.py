@@ -18,7 +18,7 @@ from omegaconf import OmegaConf, open_dict
 
 import gettext
 
-_ = gettext.gettext
+_ :gettext
 
 
 class NemoImpl(ITranslatorTask, ITranslatorGuiParam):
@@ -106,13 +106,12 @@ class NemoImpl(ITranslatorTask, ITranslatorGuiParam):
         modelparam.displayname = _("KI-Model")
         modelparam.name = "modellocation"
         modelparam.defvalue = ""
-        modelparam.mouesover = _("Die Datei in dem sich das KI-Model für eine Sprache befindet. " +
-                                 "Die Sprache ist abhängig vom KI-Model")
+        modelparam.mouesover = _("Die Datei in dem sich das KI-Model für eine Sprache befindet.\n Die Sprache ist abhängig vom KI-Model")
         return [modelparam]
 
     @staticmethod
     def getName() -> str:
-        return _("Nvidia Nemo")
+        return "Nvidia Nemo"
 
     @staticmethod
     def getDescription() -> str:

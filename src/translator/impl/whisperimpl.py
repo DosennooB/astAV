@@ -17,7 +17,7 @@ import gettext
 
 from src.translator.util.buffer import Buffer
 
-_ = gettext.gettext
+_ :gettext
 
 class WhisperImpl(ITranslatorTask, ITranslatorGuiParam):
     __task: Stask = []
@@ -88,7 +88,7 @@ class WhisperImpl(ITranslatorTask, ITranslatorGuiParam):
 
     @staticmethod
     def getName() -> str:
-        return _("Whisper")
+        return "Whisper"
 
     @staticmethod
     def getDescription() -> str:

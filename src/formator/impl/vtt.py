@@ -7,7 +7,7 @@ from src.formator.util.split import Split
 from src.formator.util.splitpolicie import *
 import gettext
 
-_ = gettext.gettext
+_ :gettext
 
 class Vtt(IFormatorTask, IFormatorGuiParam):
     task : Stask = []

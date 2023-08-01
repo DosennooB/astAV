@@ -1,0 +1,306 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR ORGANIZATION
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2023-07-27 00:41+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=cp1252\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: src\corrector\impl\dummy.py:26
+msgid "keins"
+msgstr ""
+
+#: src\corrector\impl\dummy.py:30
+msgid "enthält keinen Corrector"
+msgstr ""
+
+#: src\corrector\impl\nemopc.py:41 src\translator\impl\deepspeechimpl.py:68
+#: src\translator\impl\nemoimpl.py:106
+msgid "KI-Model"
+msgstr ""
+
+#: src\corrector\impl\nemopc.py:44
+msgid ""
+"Die Datei in dem sich das KI-Model für Zeichensetzung und Groß- und Kleinschreibung befinget.\n"
+" Das Model muss auf die Sprache angepasst sein."
+msgstr ""
+
+#: src\corrector\impl\nemopc.py:49
+msgid "Nemo PC"
+msgstr ""
+
+#: src\corrector\impl\nemopc.py:53
+msgid "Korrigiert Groß- und Kleinschreibung fügt Punkte hinzu"
+msgstr ""
+
+#: src\formator\impl\srt.py:59 src\formator\impl\vtt.py:57
+msgid "Trennmodus"
+msgstr ""
+
+#: src\formator\impl\srt.py:61 src\formator\impl\vtt.py:59
+msgid ""
+"Gibt an nach welchen Vorgaben die Untertitel getrennt werden sollen. \n"
+" Kann die Vorgaben nicht immer einhalten"
+msgstr ""
+
+#: src\formator\impl\srt.py:63 src\formator\impl\vtt.py:61
+msgid "Einzelne Wörter"
+msgstr ""
+
+#: src\formator\impl\srt.py:69
+msgid "srt Datei"
+msgstr ""
+
+#: src\formator\impl\srt.py:73
+msgid "Schreibt den erkannten Text in STR-Datei. Die Datei kann als Untertitel eingepflegt werden."
+msgstr ""
+
+#: src\formator\impl\txt.py:45
+msgid "Zeilen Modus"
+msgstr ""
+
+#: src\formator\impl\txt.py:47
+msgid "Gibt ob und an welcher Stelle ein zeilenumbruch statt finden soll"
+msgstr ""
+
+#: src\formator\impl\txt.py:48
+msgid "Eine Zeile"
+msgstr ""
+
+#: src\formator\impl\txt.py:49
+msgid "80 Zeichen pro Zeile"
+msgstr ""
+
+#: src\formator\impl\txt.py:50
+msgid "120 Zeichen pro Zeile"
+msgstr ""
+
+#: src\formator\impl\txt.py:55
+msgid "txt Datei"
+msgstr ""
+
+#: src\formator\impl\txt.py:59
+msgid "Schreibt den erkannten Text in eine txt-Datei"
+msgstr ""
+
+#: src\formator\impl\vtt.py:67
+msgid "vtt Datei"
+msgstr ""
+
+#: src\formator\impl\vtt.py:71
+msgid "Schreibt den erkannten Text in vtt-Datei. Die Datei kann als Untertitel eingepflegt werden."
+msgstr ""
+
+#: src\formator\util\splitpolicie.py:31
+msgid "Netflix DE"
+msgstr ""
+
+#: src\formator\util\splitpolicie.py:41
+msgid "ARD / ZDF"
+msgstr ""
+
+#: src\formator\util\splitpolicie.py:51
+msgid "TH-Koeln"
+msgstr ""
+
+#: src\gui\gui.py:53
+msgid "Sprache"
+msgstr ""
+
+#: src\gui\gui.py:55
+msgid "Sprachauswahl"
+msgstr ""
+
+#: src\gui\main\hauptscreen.kv:12
+msgid "Aufgaben"
+msgstr ""
+
+#: src\gui\main\hauptscreen.kv:39
+msgid "starte Verarbeitung"
+msgstr ""
+
+#: src\gui\main\hauptscreen.kv:43
+msgid "neue Aufgabe"
+msgstr ""
+
+#: src\gui\main\hauptscreen.py:24
+msgid "Datei hier ablegen"
+msgstr ""
+
+#: src\gui\main\tasktable.kv:10 src\gui\render\rendertask.kv:10
+#: src\gui\task\taskscreen.py:50
+msgid "Dateiname"
+msgstr ""
+
+#: src\gui\main\tasktable.kv:17
+msgid "Translator"
+msgstr ""
+
+#: src\gui\main\tasktable.kv:21
+msgid "Formator"
+msgstr ""
+
+#: src\gui\main\tasktable.kv:25
+msgid "bearbeiten"
+msgstr ""
+
+#: src\gui\main\tasktable.kv:29
+msgid "Löschen"
+msgstr ""
+
+#: src\gui\render\rendersreen.kv:8
+msgid "Aufgaben in Bearbeitung"
+msgstr ""
+
+#: src\gui\render\rendersreen.kv:29
+msgid "Verarbeitung stoppen"
+msgstr ""
+
+#: src\gui\render\rendersreen.kv:33
+msgid "Zurück zum Hauptbildschirm"
+msgstr ""
+
+#: src\gui\render\rendertask.kv:17
+msgid "Schritt"
+msgstr ""
+
+#: src\gui\render\rendertask.kv:25
+msgid "Warte"
+msgstr ""
+
+#: src\gui\render\rendertask.py:31
+msgid "warte"
+msgstr ""
+
+#: src\gui\render\rendertask.py:33
+msgid "fertig"
+msgstr ""
+
+#: src\gui\render\rendertask.py:35
+msgid "Fehler"
+msgstr ""
+
+#: src\gui\render\rendertask.py:37
+msgid "in Arbeit"
+msgstr ""
+
+#: src\gui\render\rendertask.py:39
+msgid "abgebrochen"
+msgstr ""
+
+#: src\gui\task\taskscreen.kv:13
+msgid "Aufgabenbearbeitung"
+msgstr ""
+
+#: src\gui\task\taskscreen.kv:24
+msgid "Datei"
+msgstr ""
+
+#: src\gui\task\taskscreen.kv:42
+msgid "Spracherkennung"
+msgstr ""
+
+#: src\gui\task\taskscreen.kv:49
+msgid "Translatorauswahl"
+msgstr ""
+
+#: src\gui\task\taskscreen.kv:70
+msgid "Überarbeitung (optional)"
+msgstr ""
+
+#: src\gui\task\taskscreen.kv:77
+msgid "Korrektorauswahl"
+msgstr ""
+
+#: src\gui\task\taskscreen.kv:98
+msgid "Speicherformat"
+msgstr ""
+
+#: src\gui\task\taskscreen.kv:105
+msgid "Formatorauswahl"
+msgstr ""
+
+#: src\gui\task\taskscreen.kv:126
+msgid "Abrechen"
+msgstr ""
+
+#: src\gui\task\taskscreen.kv:130
+msgid "OK"
+msgstr ""
+
+#: src\gui\task\taskscreen.py:32
+msgid "Audio- Videodatei"
+msgstr ""
+
+#: src\gui\task\taskscreen.py:41
+msgid "Speicherort"
+msgstr ""
+
+#: src\gui\utils\parambox.kv:36
+msgid "Ordner ändern"
+msgstr ""
+
+#: src\gui\utils\parambox.kv:57
+msgid "Datei ändern"
+msgstr ""
+
+#: src\gui\utils\parambox.py:199
+msgid " max Zeichen "
+msgstr ""
+
+#: src\translator\impl\deepspeechimpl.py:71
+#: src\translator\impl\nemoimpl.py:109
+msgid ""
+"Die Datei in dem sich das KI-Model für eine Sprache befindet.\n"
+" Die Sprache ist abhängig vom KI-Model"
+msgstr ""
+
+#: src\translator\impl\deepspeechimpl.py:74
+msgid "Scorer-Model Optional"
+msgstr ""
+
+#: src\translator\impl\deepspeechimpl.py:77
+msgid ""
+"Die Datei in dem sich der Scorer für eine Sprache befindet.\n"
+" Kann helfen die Erkennungsrate zu erhöhen"
+msgstr ""
+
+#: src\translator\impl\deepspeechimpl.py:87
+msgid "Nutzt die DeepSpeech Spracherkennung von Mozilla"
+msgstr ""
+
+#: src\translator\impl\nemoimpl.py:118
+msgid "Die Spracheerkennung von Nvidia"
+msgstr ""
+
+#: src\translator\impl\voskimpl.py:61
+msgid "KI-Model Ordner"
+msgstr ""
+
+#: src\translator\impl\voskimpl.py:64
+msgid ""
+"Der Ordner in dem sich das KI-Model für eine Sprache befindet.\n"
+" Die Sprache ist abhängig vom KI-Model"
+msgstr ""
+
+#: src\translator\impl\voskimpl.py:73
+msgid "Nutzt die Vosk Spracherkennung für die Texterkennung"
+msgstr ""
+
+#: src\translator\impl\whisperimpl.py:79
+msgid "KI Model"
+msgstr ""
+
+#: src\translator\impl\whisperimpl.py:95
+msgid "Nutzt die open-ai Spracherkennung für die Texterkennung"
+msgstr ""
+

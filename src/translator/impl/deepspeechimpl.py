@@ -11,7 +11,7 @@ from deepspeech import Model, Metadata, CandidateTranscript
 from src.boundary.stask import Stask
 import gettext
 
-_ = gettext.gettext
+_ :gettext
 
 class DeepspeechImpl(ITranslatorTask, ITranslatorGuiParam):
     __task : Stask = []
@@ -68,21 +68,19 @@ class DeepspeechImpl(ITranslatorTask, ITranslatorGuiParam):
         modelparam.displayname = _("KI-Model")
         modelparam.name = "modellocation"
         modelparam.defvalue = ""
-        modelparam.mouesover = _("Die Datei in dem sich das KI-Model für eine Sprache befindet. " +
-                                 "Die Sprache ist abhängig vom KI-Model")
+        modelparam.mouesover = _("Die Datei in dem sich das KI-Model für eine Sprache befindet.\n Die Sprache ist abhängig vom KI-Model")
 
         scorerparam = GuiParamFile()
         scorerparam.displayname = _("Scorer-Model Optional")
         scorerparam.name = "scorerlocation"
         scorerparam.defvalue = ""
-        scorerparam.mouesover = _("Die Datei in dem sich der Scorer für eine Sprache befindet. " +
-                                 "Kann helfen die Erkennungsrate zu erhöhen")
+        scorerparam.mouesover = _("Die Datei in dem sich der Scorer für eine Sprache befindet.\n Kann helfen die Erkennungsrate zu erhöhen")
 
         return [modelparam, scorerparam]
 
     @staticmethod
     def getName() -> str:
-        return _("Deepspeech")
+        return "Deepspeech"
 
     @staticmethod
     def getDescription() -> str:
