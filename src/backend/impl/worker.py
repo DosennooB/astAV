@@ -43,5 +43,6 @@ class Worker(IWorkerStart):
             task.errorcode = e
             task.setStatus(StatusTyp.ERROR)
             print(e)
+            print(e.with_traceback())
             return False
 

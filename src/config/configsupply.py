@@ -25,7 +25,8 @@ class ConfigSupply(object):
             cls._instance = super(ConfigSupply, cls).__new__(cls)
             cls.currentlanguage = Jsonlanguagesave.readLanguage()
             [cls.presetlist,cls.currentpreset] = Jsonpresetsave.readStask()
-            lang_code_list = [name for name in os.listdir("locales") if
+            abs_path = os.path.abspath('locales')
+            lang_code_list = [name for name in os.listdir(abs_path) if
                      os.path.isdir(os.path.join('locales', name))]
             test_current_lang = Jsonlanguagesave.readLanguage()
 

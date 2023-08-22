@@ -1,7 +1,7 @@
 {
   "app-id": "org.dosennoob.astAV",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "43",
+  "runtime-version": "44",
   "sdk": "org.gnome.Sdk",
   "command": "astAV.sh",
   "finish-args": [
@@ -10,6 +10,8 @@
     "--socket=x11",
     "--socket=wayland",
     "--filesystem=host",
+    "--filesystem=home",
+    "--filesystem=xdg-config:create",
     "--device=dri"
   ],
   "cleanup": [
@@ -32,57 +34,8 @@
       "sources": [
         {
           "type" : "archive",
-          "url": "https://www.python.org/ftp/python/3.8.16/Python-3.8.16.tar.xz",
-          "sha256": "d85dbb3774132473d8081dcb158f34a10ccad7a90b96c7e50ea4bb61f5ce4562"
-        }
-      ]
-    },
-    {
-      "name": "tkinter",
-      "buildsystem": "simple",
-      "build-options": {
-        "build-args" : [
-          "--share=network"
-        ]
-      },
-      "build-commands": [
-        "pip3 install --prefix=${FLATPAK_DEST} ."
-      ],
-      "sources": [
-        {
-          "type": "git",
-          "url": "https://github.com/iwalton3/tkinter-standalone",
-          "commit": "2301112d142ebaf7532b25600c77d1a2edc9ef04"
-        }
-      ],
-      "modules": [
-        {
-          "name": "tcl",
-          "sources": [
-            {
-              "type": "archive",
-              "url": "https://sourceforge.net/projects/tcl/files/Tcl/8.6.11/tcl8.6.11-src.tar.gz",
-              "sha256": "8c0486668586672c5693d7d95817cb05a18c5ecca2f40e2836b9578064088258"
-            }
-          ],
-          "subdir": "unix",
-          "post-install": [
-            "chmod +w /app/lib/libtcl8.6.so"
-          ]
-        },
-        {
-          "name": "tk",
-          "sources": [
-            {
-              "type": "archive",
-              "url": "https://sourceforge.net/projects/tcl/files/Tcl/8.6.11/tk8.6.11-src.tar.gz",
-              "sha256": "5228a8187a7f70fa0791ef0f975270f068ba9557f57456f51eb02d9d4ea31282"
-            }
-          ],
-          "subdir": "unix",
-          "post-install": [
-            "chmod +w /app/lib/libtk8.6.so"
-          ]
+          "url": "https://www.python.org/ftp/python/3.9.17/Python-3.9.17.tar.xz",
+          "md5": "601fc470594f378b4339b454901f8e41"
         }
       ]
     },
@@ -140,6 +93,32 @@
         }
       ]
     },
+        {
+      "name" : "icon_local_config",
+      "buildsystem" : "simple",
+      "build-commands": [
+        "cp -r icons/ /app/icons",
+        "cp -r locales/ /app/locales",
+        "ln -s ~/.var/app/org.dosennoob.astAV/config /app/config"
+      ],
+      "sources": [
+        {
+          "type": "dir",
+          "path": "icons/",
+          "dest": "icons/"
+        },
+        {
+          "type": "dir",
+          "path": "locales/",
+          "dest": "locales/"
+        },
+        {
+          "type": "dir",
+          "path": "config/",
+          "dest": "config/"
+        }
+      ]
+    },
     {
       "name" : "python_dep",
       "buildsystem" : "simple",
@@ -151,14 +130,15 @@
       "build-commands": [
         "pip3 install Kivy==2.1.0",
         "pip3 install ffmpeg-python==0.2.0",
-        "pip3 install numpy==1.23.0",
-        "pip3 install setuptools==59.5.0",
+        "pip3 install numpy==1.23.5",
+        "pip3 install setuptools==65.5.1",
         "pip3 install onnx",
+        "pip3 install Cython",
         "pip3 install python-dateutil",
         "pip3 install scikit-learn",
         "pip3 install tensorboard",
         "pip3 install text-unidecode",
-        "pip install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu117",
+        "pip3 install torch torchvision torchaudio",
         "pip3 install tqdm>=4.41.0",
         "pip3 install wget",
         "pip3 install wrapt",
@@ -169,21 +149,21 @@
         "pip3 install jiwer",
         "pip3 install librosa>=0.9.0",
         "pip3 install marshmallow",
-        "pip3 install matplotlib==3.7.0",
+        "pip3 install matplotlib==3.7.2",
         "pip3 install packaging",
         "pip3 install pyannote-core",
         "pip3 install pyannote-metrics",
         "pip3 install scipy",
         "pip3 install pandas",
         "pip3 install sacremoses>=0.0.43",
-        "pip3 install sentencepiece==0.1.97",
+        "pip3 install sentencepiece==0.1.99",
         "pip3 install youtokentome>=1.0.5",
         "pip3 install hydra-core==1.2.0",
         "pip3 install omegaconf==2.2.3",
         "pip3 install pytorch-lightning==1.9.4",
-        "pip3 install pyyaml==5.4.1",
-        "pip3 install torchmetrics>=0.11.0",
-        "pip3 install transformers>=4.0.1",
+        "pip3 install pyyaml==6.0",
+        "pip3 install torchmetrics>=1.0.3",
+        "pip3 install transformers>=4.31.0",
         "pip3 install wandb",
         "pip3 install webdataset==0.1.62",
         "pip3 install einops",
@@ -204,11 +184,16 @@
         "pip3 install sacrebleu",
         "pip3 install sentence-transformers",
         "pip3 install vosk",
-        "pip3 install nemo-toolkit==1.16.0",
-        "pip3 install ipython==8.10.0",
-        "pip3 install lightning-lite==1.8.6",
+        "pip3 install rouge-score",
+        "pip3 install nemo-toolkit==1.20.0",
+        "pip3 install ipython==8.6.0",
         "pip3 install ipadic==1.0.0",
-        "pip3 install mecab-python3==1.0.6"
+        "pip3 install mecab-python3==1.0.6",
+        "pip3 install openai-whisper",
+        "pip3 install kivy_garden.filebrowser",
+        "pip3 install jsonpickle",
+        "pip3 install langcodes",
+        "pip3 install language_data"
       ]
     }
   ]

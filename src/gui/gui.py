@@ -60,3 +60,6 @@ class astAVGui(App):
         if (key == 'currentlanguage'):
             ConfigSupply().setCurrentLanguage(value)
 
+    def get_application_config(self):
+        return super(astAVGui, self).get_application_config(
+            'config/astavgui.ini')
