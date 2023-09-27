@@ -7,6 +7,7 @@ from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.app import App
 
+from src.config.configsupply import ConfigSupply
 from src.backend.impl.scheduler import Scheduler
 from src.gui.main.tasktable import TaskTable
 from src.boundary.stask import Stask
@@ -43,20 +44,38 @@ class HauptScreen(Screen):
         Window.unbind(on_dropfile=self.onDropFile)
 
     def buttonNewtaskCallback(self, instance):
-        Scheduler.setTempTask(Stask())
+        task = ConfigSupply().getCurrentPreset()
+        if(task == None):
+            task = Stask()
+        Scheduler.setTempTask(task)
         running_app = App.get_running_app()
         running_app.switchToTask()
 
     def onDropFile(self, window, file_path):
+        task = ConfigSupply().getCurrentPreset()
         file_path = file_path.decode("utf-8")
         dirname = os.path.dirname(file_path)
         basename = os.path.basename(file_path).split(".")[0]
-        task = Stask(filelocation=file_path,
-                     filename=basename,
-                     writelocation=dirname)
-        Scheduler.setTempTask(task)
         running_app = App.get_running_app()
-        running_app.switchToTask()
+
+        if(task == None):
+            task = Stask(filelocation=file_path,
+                         filename=basename,
+                         writelocation=dirname)
+            Scheduler.setTempTask(task)
+            running_app.switchToTask()
+
+        else:
+            task.filelocation= file_path
+            task.filename= basename
+            task.writelocation=dirname
+            Scheduler.setTempTask(task)
+            Scheduler.insertTask(task)
+            running_app.switchToMain()
+
+
+
+
 
     def buttonProcessingCallback(self, instance):
         Scheduler.clearStatus()
