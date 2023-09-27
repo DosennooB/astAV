@@ -1,0 +1,53 @@
+#:include src/gui/settings/delpreset.kv
+
+<Linediv>:
+    canvas:
+        Line:
+            points: (self.x,self.center_y,self.x+self.width,self.center_y)
+
+<ManagePreset>
+    size_hint_y: None
+    height: self.minimum_height
+    BoxLayout:
+        height: '20dp'
+        size_hint: (1, None)
+        orientation:'horizontal'
+        padding: '5dp'
+        spacing: '10dp'
+        Label:
+            size_hint: (None,1)
+            text_size: None, None
+            size: self.texture_size
+            text: _("default_preset")
+        Linediv:
+    BoxLayout:
+        size_hint: (1, None)
+        orientation:'horizontal'
+        padding: ('25dp','0dp','0dp','0dp')
+        Label:
+            text: _("choose_preset")
+            underline: True
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+        Spinner:
+            id: defaultpreset
+
+    BoxLayout:
+        height: '20dp'
+        size_hint: (1, None)
+        orientation:'horizontal'
+        padding: '5dp'
+        spacing: '10dp'
+        Label:
+            size_hint: (None,1)
+            text_size: None, None
+            size: self.texture_size
+            text: _("delet_preset")
+        Linediv:
+    BoxLayout:
+        size_hint_y: None
+        height: self.minimum_height
+        padding: ('25dp','0dp','0dp','0dp')
+        orientation: 'vertical'
+        id: delpresetlayout
