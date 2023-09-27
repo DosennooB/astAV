@@ -1,0 +1,110 @@
+#:include src/gui/utils/parambox.kv
+
+<Linediv>:
+    canvas:
+        Line:
+            points: (self.x,self.center_y,self.x+self.width,self.center_y)
+
+<NewPreset>:
+    BoxLayout:
+        height: '20dp'
+        size_hint: (1, None)
+        orientation:'horizontal'
+        padding: '5dp'
+        spacing: '10dp'
+        Label:
+            size_hint: (None,1)
+            text_size: None, None
+            size: self.texture_size
+            text: _("Spracherkennung")
+        Linediv:
+    BoxLayout:
+        size_hint: (1, None)
+        orientation:'horizontal'
+        padding: ('25dp','0dp','0dp','0dp')
+        Label:
+            text: _("Translatorauswahl")
+            underline: True
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+        Spinner:
+            id: translator
+    BoxLayout:
+        size_hint: (1, None)
+        padding: ('25dp','0dp','0dp','0dp')
+        orientation: 'vertical'
+        id: translatorparamlayout
+
+
+    BoxLayout:
+        size_hint: (1, None)
+        height: '20dp'
+        orientation:'horizontal'
+        padding: '5dp'
+        spacing: '10dp'
+        Label:
+            size_hint: (None,1)
+            text_size: None, None
+            size: self.texture_size
+            text: _("Überarbeitung (optional)")
+        Linediv:
+    BoxLayout:
+        size_hint: (1, None)
+        orientation: 'horizontal'
+        padding: ('25dp','00dp','0dp','0dp')
+        Label:
+            text: _("Korrektorauswahl")
+            underline: True
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+        Spinner:
+            id: corrector
+    BoxLayout:
+        padding: ('25dp','0dp','0dp','0dp')
+        orientation: 'vertical'
+        id: correctorparamlayout
+        size_hint: (1,None)
+
+
+    BoxLayout:
+        size_hint: (1, None)
+        height: '20dp'
+        orientation:'horizontal'
+        padding: '5dp'
+        spacing: '10dp'
+        Label:
+            size_hint: (None,1)
+            text_size: None, None
+            size: self.texture_size
+            text: _("Speicherformat")
+        Linediv:
+    BoxLayout:
+        size_hint: (1, None)
+        orientation: 'horizontal'
+        padding: ('25dp','0dp','0dp','0dp')
+        Label:
+            text: _("Formatorauswahl")
+            underline: True
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+        Spinner:
+            id: formator
+    BoxLayout:
+        padding: ('25dp','0dp','0dp','0dp')
+        orientation: 'vertical'
+        id: formatorparamlayout
+        size_hint: (1,None)
+
+    BoxLayout:
+        orientation: 'horizontal'
+        spacing: '20dp'
+        padding: '5dp'
+        size_hint: (1, None)
+        height: '70dp'
+        Button:
+            id: newpreset
+            text: _("New Preset")
+            font_size: '25dp'
