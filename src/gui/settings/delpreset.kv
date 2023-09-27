@@ -1,0 +1,18 @@
+
+
+<DelPreset>:
+    orientation:'horizontal'
+    padding: ('25dp','0dp','0dp','0dp')
+    size_hint:(1, None)
+    Label:
+        text: "placeholder presetname"
+        id: presetname
+        underline: True
+        text_size: self.size
+        halign: 'left'
+        valign: 'middle'
+        size_hint:(1.5, 1)
+    Button:
+        id: del
+        text: _('del_preset')
+        size_hint:(0.7,1)
