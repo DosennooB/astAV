@@ -20,7 +20,7 @@ class Jsonpresetsave(object):
 
     @staticmethod
     def readStask()-> [list, str]:
-        preset_list = {}
+        preset_list = []
         currentpreset = ''
         path = 'config'
         path = os.path.join(path, 'preset_config.json')
@@ -32,7 +32,7 @@ class Jsonpresetsave(object):
             preset_list = complet_dict['_presetlist']
             currentpreset = complet_dict['_currentpreset']
 
-        except:
-            pass
+        except Exception as e:
+            print(e.with_traceback())
         return [preset_list,currentpreset]
 

@@ -24,7 +24,6 @@ class ConfigSupply(object):
         if cls._instance is None:
             cls._instance = super(ConfigSupply, cls).__new__(cls)
             cls.currentlanguage = Jsonlanguagesave.readLanguage()
-            [cls.presetlist,cls.currentpreset] = Jsonpresetsave.readStask()
             abs_path = os.path.abspath('locales')
             lang_code_list = [name for name in os.listdir(abs_path) if
                      os.path.isdir(os.path.join('locales', name))]
@@ -47,8 +46,14 @@ class ConfigSupply(object):
             else:
                 cls.currentlanguage = 'en'
 
-        newlang = gettext.translation('base', localedir='locales', languages=[cls.currentlanguage])
-        newlang.install('astAV')
+            newlang = gettext.translation('base', localedir='locales', languages=[cls.currentlanguage])
+            newlang.install('astAV')
+            [cls.presetlist, cls.currentpreset] = Jsonpresetsave.readStask()
+
+
+        else:
+            newlang = gettext.translation('base', localedir='locales', languages=[cls.currentlanguage])
+            newlang.install('astAV')
 
         return cls._instance
 
@@ -110,8 +115,15 @@ class ConfigSupply(object):
         return True
 
     # prüft nach nach presetnamen in der liste
-    def deletPreset(self, oldpresetname)->bool:
+    def deletPreset(self, oldpresetname) -> bool:
         self.presetlist = [x for x in self.presetlist if (x.presetname is not oldpresetname)]
+
+        if(oldpresetname ==self.currentpreset):
+            if(len(self.presetlist)>0):
+                self.currentpreset = self.presetlist[0].presetname
+            else:
+                self.currentpreset = ""
+        Jsonpresetsave.saveStask(self.presetlist, self.currentpreset)
         return True
 
     def getPresetByName(self, presetname:str)-> Stask:
@@ -127,6 +139,9 @@ class ConfigSupply(object):
         for preset in self.presetlist:
             presetnames.append(preset.presetname)
         return presetnames
+
+    def getCurrantPresetName(self) -> str:
+        return self.currentpreset
 
     def getCurrentPreset(self)-> Stask:
         for preset in self.presetlist:
