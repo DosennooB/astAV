@@ -149,6 +149,8 @@ class TaskScreen(Screen):
         corrector_spinner.bind(text=self.spinnerChangeCorrectorCallback)
         fromator_spinner.bind(text=self.spinnerChangeFormatorCallback)
 
+
+    ###TODO VERschiebe nach ParamBox und Schmeiße aus New Preset raus
     def generateParamBox(self, guiparam: GuiParam):
         paramlayoutentry = []
         if(guiparam.type == ParamType.FILE):
@@ -219,7 +221,8 @@ class TaskScreen(Screen):
                      corrector=corrector,
                      correctorparam=correctorparam,
                      formator=formator,
-                     formatorparam=formatorparam
+                     formatorparam=formatorparam,
+                     presetname=_("Custom_task")
                      )
         Scheduler.insertTask(task)
 
