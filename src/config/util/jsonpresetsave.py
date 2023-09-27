@@ -33,6 +33,6 @@ class Jsonpresetsave(object):
             currentpreset = complet_dict['_currentpreset']
 
         except Exception as e:
-            print(e.with_traceback())
+            print(e)
         return [preset_list,currentpreset]
 
